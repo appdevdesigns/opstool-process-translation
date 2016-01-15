@@ -29,6 +29,5 @@
  */
 module.exports = {
 
-    // 'get /route/one' : [ 'action.key.1', ['action.key.2', 'action.key.3']],
-
+    'get /opstool-process-translation/trrequest' : [ 'translation.tool.view' ]
 };

@@ -11,16 +11,15 @@
  * http://sailsjs.org/#documentation
  */
 
-// var serviceStack = ADCore.policy.serviceStack([ 'policy1', 'policy2']);
 
 module.exports = {
 
-//    'opstool-process-translation/YourController': {
-//        method: ['isAuthenticatedService'],
-//        auth: [],
-//        sync: serviceStack,
-//        logout:true
-//    }
-
+    'opstool-process-translation/TRRequestController': {
+        create: false,
+        add: false,
+        populate: false,
+        remove: false,
+        destroy: false
+    }
 
 };

@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "action_key": "test.action",
+    "action_key": "translation.tool.view",
     "createdAt": "2015-05-19 15:37:39",
     "updatedAt": "2015-05-20 15:06:44"
   }
