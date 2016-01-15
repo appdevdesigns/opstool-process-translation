@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- "0.12"
+
+sudo: false
+
+before_script:
+- npm install -g  balderdashy/sails appdevdesigns/appdev-cli#develop
+- cd /tmp
+- chmod +x /home/travis/build/wongpratan/opstool-process-translation/test/setup/install.sh
+- /home/travis/build/wongpratan/opstool-process-translation/test/setup/install.sh
+- cd ad-test/node_modules
+- mv /home/travis/build/wongpratan/opstool-process-translation .
+- cd opstool-process-translation
+- npm install
+
+script:
+- npm test
+ 

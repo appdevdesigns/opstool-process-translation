@@ -1,0 +1,35 @@
+{
+    "name": "opstool-process-translation",
+    "version": "1.0.0",
+    "description": "A translation project",
+    "main": "module.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "make test",
+        "postinstall": "node setup/setup.js",
+        "postupdate": "node setup/setup.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/wongpratan/opstool-process-translation.git"
+    },
+    "author": "Pong",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wongpratan/opstool-process-translation/issues"
+    },
+    "homepage": "https://github.com/wongpratan/opstool-process-translation#readme",
+    "dependencies": {
+        "ad-utils": "appdevdesigns/ad-utils"
+    },
+    "devDependencies": {
+        "barrels": "^1.6.4",
+        "chai": "^3.4.1",
+        "mocha": "^2.3.4",
+        "mocha-phantomjs": "^4.0.2",
+        "phantomjs": "^1.9.7-15",
+        "supertest": "^1.1.0"
+    }
+}
