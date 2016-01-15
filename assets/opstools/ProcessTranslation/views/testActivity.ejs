@@ -6,7 +6,7 @@
                     <label>
                         <%= data.labels[fieldName][languageData.attr('fromLanguageCode')] %>
                     </label>
-                    <textarea class="form-control" rows="5" name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>"><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
+                    <textarea class="form-control" rows="5" name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>" readonly><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
                 </div>
                 <% }); %>
         </div>

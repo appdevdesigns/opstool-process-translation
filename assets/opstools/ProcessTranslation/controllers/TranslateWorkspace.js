@@ -4,7 +4,6 @@ steal(
     'appdev',
     'OpsPortal/classes/OpsButtonBusy.js',
     function () {
-
         // Namespacing conventions:
         // AD.Control.extend('[application].[controller]', [{ static },] {instance} );
         AD.Control.extend('opstools.ProcessTranslation.TranslateWorkspace', {
@@ -123,6 +122,8 @@ steal(
 
                 switch (status) {
                     case 'accept':
+                        // TODO : confirm box ??
+                    
                         this.populateTransactionValues();
                         this.transaction.attr('status', 'processed');
                         this.transaction.save().then(function () {
@@ -142,6 +143,8 @@ steal(
                         });
                         break;
                     case 'cancel':
+                        // TODO : confirm box
+                    
                         this.embeddTemplate('.tr-translateform', this.transaction.objectData.form);
                         this.buttons[status].ready();
                         this.buttonsEnable();
