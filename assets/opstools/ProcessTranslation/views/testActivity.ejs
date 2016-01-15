@@ -6,21 +6,17 @@
                     <label>
                         <%= data.labels[fieldName][languageData.attr('fromLanguageCode')] %>
                     </label>
-                    <textarea class="form-control" rows="5" name="objective_<%= fieldName %>">
-                        <%= field[languageData.attr('fromLanguageCode')] %>
-                    </textarea>
+                    <textarea class="form-control" rows="5" name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>"><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
                 </div>
                 <% }); %>
         </div>
         <div class='col-xs-6 op-container op-stage'>
             <% data.fields.each(function(field, fieldName) { %>
-                <div class="form-inline">
+                <div class=" form-inline">
                     <label>
                         <%= data.labels[fieldName][languageData.attr('toLanguageCode')] %>
                     </label>
-                    <textarea class="form-control" rows="5" name="objective_<%= fieldName %>">
-                        <%= field[languageData.attr('toLanguageCode')] %>
-                    </textarea>
+                    <textarea class=" form-control " rows="5" name="<%= fieldName + '.' + languageData.attr('toLanguageCode') %>"><%= field.attr(languageData.attr('toLanguageCode')) %></textarea>
                 </div>
                 <% }); %>
         </div>

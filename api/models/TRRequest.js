@@ -22,7 +22,7 @@ module.exports = {
     status : { type: 'string',
             in:[
             'pending',
-            'accepted'
+            'processed'
             ] 
     },
     

@@ -58,6 +58,120 @@
     },
     {
         "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "ko",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity Two",
+                    "context": "application.context"
+                },
+                "fromLanguage": "English",
+                "toLanguage": "Korean"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 2",
+                            "ko": "[ko]my english translation 2",
+                            "zh-hans": "[zh-hans]my english translation 2",
+                            "th": "[th]my english translation 2"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 2",
+                            "ko": "[ko]my english translation 2",
+                            "zh-hans": "[zh-hans]my english translation 2",
+                            "th": "[th]my english translation 2"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    {
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "ko",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity Three",
+                    "context": "application.context"
+                },
+                "fromLanguage": "English",
+                "toLanguage": "Korean"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 3",
+                            "ko": "[ko]my english translation 3",
+                            "zh-hans": "[zh-hans]my english translation 3",
+                            "th": "[th]my english translation 3"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 3",
+                            "ko": "[ko]my english translation 3",
+                            "zh-hans": "[zh-hans]my english translation 3",
+                            "th": "[th]my english translation 3"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    {
+        "actionKey": "translation.tool.view",
         "userID": "user.2",
         "callback": "return.message.queue.1",
         "status": "pending",
@@ -70,11 +184,298 @@
             "menu": {
                 "icon": "fa-photo",
                 "action": {
-                    "key": "Activity Two",
+                    "key": "Activity Four",
                     "context": "application.context"
                 },
                 "fromLanguage": "English",
                 "toLanguage": "Korean"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 4",
+                            "ko": "[ko]my english translation 4",
+                            "zh-hans": "[zh-hans]my english translation 4",
+                            "th": "[th]my english translation 4"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 4",
+                            "ko": "[ko]my english translation 4",
+                            "zh-hans": "[zh-hans]my english translation 4",
+                            "th": "[th]my english translation 4"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    {
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "zh-hans",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity One",
+                    "context": "application.context"
+                },
+                "fromLanguage": "English",
+                "toLanguage": "Chinese"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 1",
+                            "ko": "[ko]my english translation 1",
+                            "zh-hans": "[zh-hans]my english translation 1",
+                            "th": "[th]my english translation 1"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 1",
+                            "ko": "[ko]my english translation 1",
+                            "zh-hans": "[zh-hans]my english translation 1",
+                            "th": "[th]my english translation 1"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    {
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "zh-hans",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity Two",
+                    "context": "application.context"
+                },
+                "fromLanguage": "English",
+                "toLanguage": "Chinese"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 2",
+                            "ko": "[ko]my english translation 2",
+                            "zh-hans": "[zh-hans]my english translation 2",
+                            "th": "[th]my english translation 2"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 2",
+                            "ko": "[ko]my english translation 2",
+                            "zh-hans": "[zh-hans]my english translation 2",
+                            "th": "[th]my english translation 2"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    {
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "zh-hans",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity Three",
+                    "context": "application.context"
+                },
+                "fromLanguage": "English",
+                "toLanguage": "Chinese"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 3",
+                            "ko": "[ko]my english translation 3",
+                            "zh-hans": "[zh-hans]my english translation 3",
+                            "th": "[th]my english translation 3"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 3",
+                            "ko": "[ko]my english translation 3",
+                            "zh-hans": "[zh-hans]my english translation 3",
+                            "th": "[th]my english translation 3"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    
+    
+    {
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "en",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity One",
+                    "context": "application.context"
+                },
+                "fromLanguage": "Chinese",
+                "toLanguage": "English"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "caption": {
+                            "languageCode": "translation",
+                            "en": "my english translation 1",
+                            "ko": "[ko]my english translation 1",
+                            "zh-hans": "[zh-hans]my english translation 1",
+                            "th": "[th]my english translation 1"
+                        },
+                        "description": {
+                            "languageCode": "translation",
+                            "en": "my english translation 1",
+                            "ko": "[ko]my english translation 1",
+                            "zh-hans": "[zh-hans]my english translation 1",
+                            "th": "[th]my english translation 1"
+                        }
+                    },
+                    "labels": {
+                        "caption": {
+                            "en": "Caption",
+                            "ko": "표제",
+                            "zh-hans": "标题",
+                            "th": "คำอธิบาย"
+                        },
+                        "description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                },
+                "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
+            }
+        }
+    },
+    {
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "status": "pending",
+        "model": "sailsModelName",
+        "modelCond": {
+            "tableForeignKeyField": 4
+        },
+        "toLanguageCode": "en",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Activity Two",
+                    "context": "application.context"
+                },
+                "fromLanguage": "Chinese",
+                "toLanguage": "English"
             },
             "form": {
                 "data": {

@@ -112,7 +112,7 @@ steal(
 
             selectLI: function ($el) {
                 this.clearSelectItems();
-                
+
                 $el.addClass('active');
 
                 var model = $el.data('item');

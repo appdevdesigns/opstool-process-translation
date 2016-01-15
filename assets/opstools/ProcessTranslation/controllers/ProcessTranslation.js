@@ -15,6 +15,7 @@ steal(
         AD.Control.OpsTool.extend('ProcessTranslation', {
             CONST: {
                 LANGUAGE_SELECTED: 'TR_Language.Selected',
+                ITEM_ACCEPTED: 'TR_Transaction.Accepted',
                 ITEM_SELECTED: 'TR_Transaction.Selected'
             },
 
@@ -56,7 +57,7 @@ steal(
 
                 this.controllers.LanguageSelector = new LanguageSelector(this.element.find('.tr-languageselector'), { eventLanguageSelected: this.CONST.LANGUAGE_SELECTED });
                 this.controllers.PendingTransactions = new PendingTransactions(this.element.find('.tr-pendingtransactions'), { eventItemSelected: this.CONST.ITEM_SELECTED });
-                this.controllers.TranslateWorkspace = new TranslateWorkspace(this.element.find('.tr-translateworkspace'), { fromLanguageCode: this.data.fromLanguageCode, toLanguageCode: this.data.toLanguageCode });
+                this.controllers.TranslateWorkspace = new TranslateWorkspace(this.element.find('.tr-translateworkspace'), { eventItemAccepted: this.CONST.ITEM_ACCEPTED, fromLanguageCode: this.data.fromLanguageCode, toLanguageCode: this.data.toLanguageCode });
             },
 
             initEvents: function () {
@@ -65,6 +66,10 @@ steal(
 
                 this.controllers.PendingTransactions.element.on(this.CONST.ITEM_SELECTED, function (event, transaction) {
                     _this.controllers.TranslateWorkspace.setTransaction(transaction, _this.data.fromLanguageCode, _this.data.toLanguageCode);
+                });
+
+                this.controllers.TranslateWorkspace.element.on(this.CONST.ITEM_ACCEPTED, function (event, transaction) {
+                    _this.controllers.PendingTransactions.clearSelectItems();
                 });
 
                 this.controllers.LanguageSelector.element.on(this.CONST.LANGUAGE_SELECTED, function (event, selectedLanguage) {
@@ -93,7 +98,7 @@ steal(
 
 
                         _this.controllers.PendingTransactions.setList(list);
-                        
+
                         _this.data.list = list;
 
                         console.log('... here is our list of pending transactions:', list);

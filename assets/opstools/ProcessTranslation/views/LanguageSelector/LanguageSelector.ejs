@@ -2,7 +2,7 @@
     <div class="form-group">
         <label for="translateFromLanguage">From:</label>
         <select id="translateFromLanguage" class="language-selector" trrequest-trans="fromLanguage">
-            <% for(code in fromLanguagesList) { %>
+            <% for (var code in fromLanguagesList.attr()) { %>
                 <option value="<%= code %>" <%=code===fromLanguageCode ? "selected" : "" %>>
                     <%= fromLanguagesList[code] %>
                 </option>
@@ -12,7 +12,7 @@
     <div class="form-group">
         <label for="translateToLanguage">To:</label>
         <select id="translateToLanguage" class="language-selector" trrequest-trans="toLanguage">
-            <% for(code in toLanguagesList) { %>
+            <% for (var code in toLanguagesList.attr()) { %>
                 <option value="<%= code %>" <%=code===toLanguageCode ? "selected" : "" %>>
                     <%= toLanguagesList[code] %>
                 </option>
