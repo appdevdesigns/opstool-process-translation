@@ -128,4 +128,7 @@ describe('TRRequestController', function () {
 
     });
 
+    it('should update data on our REST put route', function (done) {
+    });
+
 });
