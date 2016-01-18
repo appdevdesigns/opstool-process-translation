@@ -7,7 +7,7 @@
 
 module.exports = {
 
-//   connection:"appdev_default",
+  connection:"appdev_default",
   
   tableName: "tr_request",
 
@@ -30,9 +30,15 @@ module.exports = {
     
     modelCond : { type: 'json'},
     
-    toLanguageCode : { type : 'string'},
+    toLanguageCode : {
+        type : "string",
+        size : 10,
+        maxLength: 10
+    },
 
-    objectData : { type: 'json' }
+    objectData : { type: 'json' },
+    
+    
   }
 };
 

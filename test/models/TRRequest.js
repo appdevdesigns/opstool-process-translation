@@ -30,7 +30,7 @@ describe('TRRequest', function () {
         });
     });
 
-    it('show allow when set pending status', function (done) {
+    it('should allow when set pending status', function (done) {
         TRRequest.update({ id: 1 }, {
             status: 'pending'
         }).exec(function (err, result) {
@@ -41,12 +41,22 @@ describe('TRRequest', function () {
 
     });
 
-    it('show allow when set processed status', function (done) {
+    it('should allow when set processed status', function (done) {
         TRRequest.update({ id: 1 }, {
             status: 'processed'
         }).exec(function (err, result) {
             assert.isNull(err, ' --> should not show any errors');
             assert.isNotNull(result, ' --> should return result');
+            done();
+        });
+
+    });
+
+    it('should not allow when set toLanguageCode value more than 10 characters', function (done) {
+        TRRequest.update({ id: 1 }, {
+            toLanguageCode: '12345678910'
+        }).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show a error');
             done();
         });
 

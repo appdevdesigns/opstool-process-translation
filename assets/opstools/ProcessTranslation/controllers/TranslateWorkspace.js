@@ -3,6 +3,7 @@ steal(
 // List your Controller's dependencies here:
     'appdev',
     'OpsPortal/classes/OpsButtonBusy.js',
+    'OpsPortal/classes/OpsWidget.js',
     function () {
         // Namespacing conventions:
         // AD.Control.extend('[application].[controller]', [{ static },] {instance} );
@@ -30,27 +31,33 @@ steal(
             },
 
             initDOM: function () {
-                // convert to template
+                this.dom = {};
+
                 var template = this.domToTemplate(this.element);
-                can.view.ejs('TR_TranslateForm', template); // clear the form
-                this.element.html('');
+                can.view.ejs('TR_TranslateForm', template);
+
+                this.element.html(can.view('TR_TranslateForm', {}));
             },
 
             setTransaction: function (transaction, fromLanguageCode, toLanguageCode) {
                 var _this = this;
+
 
                 this.transaction = transaction;
                 this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
                 this.data.languageData.attr('toLanguageCode', toLanguageCode);
 
                 this.element.html(can.view('TR_TranslateForm', { transaction: transaction }));
+                this.element.find('.tr-instructionsPanel').hide();
+                this.element.find('.tr-translateform').show();
                 this.element.find('.tr-translateform-submit').each(function (index, btn) {
                     var status = $(btn).attr('tr-status');
                     _this.buttons[status] = new AD.op.ButtonBusy(btn);
                 });
 
-                this.embeddTemplate('.tr-translateform', transaction.objectData.form);
-                this.form = new AD.op.Form(this.element.find('.tr-translateform'));
+                this.embeddTemplate('.tr-translateform-relatedTemplate', transaction.objectData.form);
+                this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translateform-relatedTemplate'));
+                this.form = new AD.op.Form(this.element.find('.tr-translateform-relatedTemplate'));
             },
 
             embeddTemplate: function (sel, templateInfo) {
@@ -81,7 +88,9 @@ steal(
 
             clearWorkspace: function () {
                 this.transaction = null;
-                this.element.html('');
+                this.element.find('.tr-translateform-relatedTemplate').html('');
+                this.element.find('.tr-translateform').hide();
+                this.element.find('.tr-instructionsPanel').show();
             },
 
             buttonsEnable: function () {
@@ -109,6 +118,13 @@ steal(
 
                         this.transaction.objectData.form.data.fields[fieldName].attr(languageCode, formValues[key]);
                     }
+                }
+            },
+
+            resize: function (height) {
+                if (this.dom.FormWidget) {
+                    // TODO : Custom how minus height
+                    this.dom.FormWidget.resize({ height: height - 112 });
                 }
             },
 
@@ -143,11 +159,17 @@ steal(
                         });
                         break;
                     case 'cancel':
-                        // TODO : confirm box
-                    
-                        this.embeddTemplate('.tr-translateform', this.transaction.objectData.form);
-                        this.buttons[status].ready();
-                        this.buttonsEnable();
+                        AD.op.Dialog.Confirm({
+                            fnYes: function () {
+                                _this.embeddTemplate('.tr-translateform', _this.transaction.objectData.form);
+                                _this.buttons[status].ready();
+                                _this.buttonsEnable();
+                            },
+                            fnNo: function () {
+                                _this.buttons[status].ready();
+                                _this.buttonsEnable();
+                            }
+                        });
                         break;
                     default:
                         this.buttons[status].ready();

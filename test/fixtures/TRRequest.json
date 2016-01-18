@@ -11,7 +11,7 @@
         "toLanguageCode": "ko",
         "objectData": {
             "menu": {
-                "icon": "fa-calendar",
+                "icon": "fa-photo",
                 "action": {
                     "key": "Activity One",
                     "context": "application.context"
@@ -50,6 +50,9 @@
                             "zh-hans": "描述",
                             "th": "รายละเอียด"
                         }
+                    },
+                    "optionalInfo": {
+                        "image": "/opstools/ProcessTranslation/views/testImage.jpg"
                     }
                 },
                 "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
@@ -68,7 +71,7 @@
         "toLanguageCode": "ko",
         "objectData": {
             "menu": {
-                "icon": "fa-calendar",
+                "icon": "fa-photo",
                 "action": {
                     "key": "Activity Two",
                     "context": "application.context"
@@ -107,6 +110,9 @@
                             "zh-hans": "描述",
                             "th": "รายละเอียด"
                         }
+                    },
+                    "optionalInfo": {
+                        "image": "/opstools/ProcessTranslation/views/testImage.jpg"
                     }
                 },
                 "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
@@ -125,7 +131,7 @@
         "toLanguageCode": "ko",
         "objectData": {
             "menu": {
-                "icon": "fa-calendar",
+                "icon": "fa-photo",
                 "action": {
                     "key": "Activity Three",
                     "context": "application.context"
@@ -164,6 +170,9 @@
                             "zh-hans": "描述",
                             "th": "รายละเอียด"
                         }
+                    },
+                    "optionalInfo": {
+                        "image": "/opstools/ProcessTranslation/views/testImage.jpg"
                     }
                 },
                 "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
@@ -182,7 +191,7 @@
         "toLanguageCode": "ko",
         "objectData": {
             "menu": {
-                "icon": "fa-photo",
+                "icon": "fa-calendar",
                 "action": {
                     "key": "Activity Four",
                     "context": "application.context"
@@ -398,8 +407,6 @@
             }
         }
     },
-    
-    
     {
         "actionKey": "translation.tool.view",
         "userID": "user.1",

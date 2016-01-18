@@ -1,3 +1,11 @@
 li.trrequest-locked { 
     background-color: #333333; 
 }
+
+.tr-translateform-relatedTemplate{
+    background-color: #fff;
+}
+
+.op-stage {
+    overflow-y: auto !important;
+}

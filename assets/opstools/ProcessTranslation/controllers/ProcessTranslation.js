@@ -110,6 +110,7 @@ steal(
                 this._super(data);
 
                 this.controllers.PendingTransactions.resize(data.height);
+                this.controllers.TranslateWorkspace.resize(data.height);
             }
 
         });

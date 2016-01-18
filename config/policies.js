@@ -15,7 +15,7 @@
 
 module.exports = {
 
-    'opstool-process-translation/trrequest': {
+    'opstool-process-translation/TRRequestController': {
         create: false,
         add: false,
         populate: false,
