@@ -19,4 +19,37 @@ describe('TRRequest', function () {
             });
     });
 
+    it('should show error when set invalid status', function (done) {
+
+        TRRequest.update({ id: 1 }, {
+            status: 'invalid'
+        }).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show invalid status error');
+            assert.isUndefined(result, ' --> should return null result');
+            done();
+        });
+    });
+
+    it('show allow when set pending status', function (done) {
+        TRRequest.update({ id: 1 }, {
+            status: 'pending'
+        }).exec(function (err, result) {
+            assert.isNull(err, ' --> should not show any errors');
+            assert.isNotNull(result, ' --> should return result');
+            done();
+        });
+
+    });
+
+    it('show allow when set processed status', function (done) {
+        TRRequest.update({ id: 1 }, {
+            status: 'processed'
+        }).exec(function (err, result) {
+            assert.isNull(err, ' --> should not show any errors');
+            assert.isNotNull(result, ' --> should return result');
+            done();
+        });
+
+    });
+
 });

@@ -3,7 +3,6 @@ steal(
 // List your Controller's dependencies here:
     'appdev',
     'OpsPortal/classes/OpsButtonBusy.js',
-    'OpsPortal/classes/OpsDialog.js',
     function () {
         // Namespacing conventions:
         // AD.Control.extend('[application].[controller]', [{ static },] {instance} );
@@ -144,17 +143,11 @@ steal(
                         });
                         break;
                     case 'cancel':
-                        AD.op.Dialog.Confirm({
-                            fnYes: function () {
-                                _this.embeddTemplate('.tr-translateform', _this.transaction.objectData.form);
-                                _this.buttons[status].ready();
-                                _this.buttonsEnable();
-                            },
-                            fnNo: function () {
-                                _this.buttons[status].ready();
-                                _this.buttonsEnable();
-                            }
-                        })
+                        // TODO : confirm box
+                    
+                        this.embeddTemplate('.tr-translateform', this.transaction.objectData.form);
+                        this.buttons[status].ready();
+                        this.buttonsEnable();
                         break;
                     default:
                         this.buttons[status].ready();

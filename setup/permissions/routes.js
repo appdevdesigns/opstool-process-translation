@@ -29,5 +29,6 @@
  */
 module.exports = {
 
-    'get /opstool-process-translation/trrequest' : [ 'translation.tool.view' ]
+    '/opstool-process-translation/trrequest': ['process.approval.tool.view']
+
 };

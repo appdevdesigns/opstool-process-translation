@@ -127,8 +127,22 @@ describe('TRRequestController', function () {
             });
 
     });
+    
+      it('should not allow when update invalid status on our REST put route', function (done) {
+        var id = '1';
+        var updateModel = {
+            "status": 'invalid'
+        };
 
-    it('should update data on our REST put route', function (done) {
+        request
+            .put('/opstool-process-translation/trrequest/' + id)
+            .send(updateModel)
+            .set('Accept', 'application/json')
+            .expect(400) // Bad request
+            .end(function (err, res) {
+                done(err);
+            });
+
     });
 
 });
