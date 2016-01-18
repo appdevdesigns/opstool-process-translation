@@ -16,7 +16,6 @@ module.exports = {
 
     lock: function (req, res) {
         var id = req.param('id');
-        console.log('... lock:', id);
         if (id) {
             TRRequest.message(id, { locked: true }, req);
             res.AD.success({ locked: id });
@@ -27,7 +26,6 @@ module.exports = {
 
     unlock: function (req, res) {
         var id = req.param('id');
-        console.log('... unlock:', id);
         if (id) {
             TRRequest.message(id, { locked: false }, req);
             res.AD.success({ unlocked: id });
@@ -35,7 +33,6 @@ module.exports = {
             res.AD.error(new Error('must provide an id'));
         }
     }
-
 
 };
 

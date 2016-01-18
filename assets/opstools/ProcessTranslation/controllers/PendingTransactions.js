@@ -104,6 +104,8 @@ steal(
             setList: function (list) {
                 this.data.listTransactions = list;
                 this.dom.list.html(can.view('PendingTranslateTransactions_List', { items: this.data.listTransactions, data: this.data }));
+                if (this.data.screenHeight)
+                    this.resize(this.data.screenHeight);
             },
 
             resize: function (height) {
