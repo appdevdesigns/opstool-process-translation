@@ -1,27 +1,30 @@
-<div class="op-container op-widget-body op-block-border">
+<div class="op-container op-widget-body">
     <% if (data.optionalInfo) { %>
-        <div>
-            <img src="<%= data.optionalInfo.image %>" width="200px" />
+        <div class="op-margin-top" style="width: 100%; text-align: center;">
+            <img src="<%= data.optionalInfo.image %>" width="300px" />
         </div>
         <% } %>
             <div>
-                <div class='col-xs-6 op-container op-stage'>
+                <div class="col-xs-6">
                     <% data.fields.each(function(field, fieldName) { %>
-                        <div class="form-inline">
-                            <label>
-                                <%= data.labels[fieldName][languageData.attr('fromLanguageCode')] %>
-                            </label>
-                            <textarea class="form-control" rows="5" name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>" readonly><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
+                        <div class="op-container">
+                            <div class="form-group">
+                                <label>
+                                    <%= data.labels[fieldName][languageData.attr('fromLanguageCode')] %> :
+                                </label>
+                                <textarea name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>" readonly class="form-control" rows="3"><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
+                            </div>
                         </div>
                         <% }); %>
                 </div>
-                <div class='col-xs-6 op-container op-stage'>
+                <div class="col-xs-6">
                     <% data.fields.each(function(field, fieldName) { %>
-                        <div class=" form-inline">
-                            <label>
-                                <%= data.labels[fieldName][languageData.attr('toLanguageCode')] %>
-                            </label>
-                            <textarea class=" form-control " rows="5" name="<%= fieldName + '.' + languageData.attr('toLanguageCode') %>"><%= field.attr(languageData.attr('toLanguageCode')) %></textarea>
+                        <div class="op-container">
+                            <div class="form-group">
+                                <label>
+                                    <%= data.labels[fieldName][languageData.attr('toLanguageCode')] %> ：</label>
+                                <textarea name="<%= fieldName + '.' + languageData.attr('toLanguageCode') %>" class="form-control" rows="3"><%= field.attr(languageData.attr('toLanguageCode')) %></textarea>
+                            </div>
                         </div>
                         <% }); %>
                 </div>

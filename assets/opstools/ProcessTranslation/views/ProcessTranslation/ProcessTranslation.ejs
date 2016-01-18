@@ -1,6 +1,6 @@
 <!-- Widget -->
 
-<div class='col-xs-2 op-container hris-user-widget'>
+<div class='col-xs-2 op-container' style='padding-left: 0px;'>
     <!--Left bar-->
     <div class="op-container op-widget sticky tr-pendingtransactions">
         <div class="op-widget-masthead">
@@ -24,16 +24,18 @@
                             }
 
                           -->
-                <li mockup-show="new-activity" class="op-container [[= active ]]" trrequest-id="[[= item.getID() ]]" obj-embed="item">
-                    <span class="icon"><i class="fa [[= menuData.icon ]] fa-fw"></i></span>
+                <li mockup-show="new-activity" class="op-container selected" trrequest-id="[[= item.getID() ]]" obj-embed="item">
+                    <i class="fa [[= menuData.icon ]]"></i>
                     <div><strong>[[= menuData.action.key ]]</strong>
-                        <br> From: [[= menuData.fromLanguage ]]
-                        <br> To: [[= menuData.toLanguage ]]
+                        <br>
+                        <span>From: [[= menuData.fromLanguage ]]</span>
+                        <br>
+                        <span>To: [[= menuData.toLanguage ]]</span>
                     </div>
                 </li>
                 <!--
-                          });
-                          -->
+                    });
+                    -->
             </ul>
         </div>
     </div>
@@ -43,26 +45,28 @@
 
 <!-- Main stage area -->
 <div class='col-xs-10 op-container op-stage'>
-    <div class="op-container">
-        <div class="op-margin-bottom tr-languageselector">
-        </div>
+    <div class="op-margin-bottom tr-languageselector">
+    </div>
 
-        <div class="workspace col-lg-9 off-botm20">
-            <div class="tr-translateworkspace">
+    <div class="op-container mockup-display new-activity">
+        <div class="op-container">
+            <div class="workspace col-lg-12 op-margin-bottom tr-translateworkspace">
                 <div class="mockup-display new-activity opsportal-content-area tr-instructionsPanel">
                     <p> Select an entry on the left to begin editing. </p>
                 </div>
 
                 <!-- if(typeof transaction !== 'undefined' && transaction !== null) { -->
-                <div class="tr-translateform">
-                    <h4>[[= transaction.objectData.menu.action.key ]]</h4>
-                    <div class="op-container op-widget tr-translateform-relatedTemplate">
+                <div class="op-widget-masthead tr-translateform">
+                    <h3><i class="fa fa-4x [[= transaction.objectData.menu.icon ]]"></i>
+	                  <strong style="vertical-align: top;">[[= transaction.objectData.menu.action.key ]]</strong>
+	                </h3>
+                    <div class="op-container op-block-border op-margin-top op-widget tr-translateform-relatedTemplate">
                     </div>
 
-                    <div style="text-align: right; width: 100%;">
-                        <button class="btn btn-success float-right tr-translateform-submit" tr-status="cancel"><i class="fa"></i>Cancel</button>
-                        <button class="btn btn-info  float-right offset-15 tr-translateform-submit" tr-status="save"><i class="fa"></i>Save</button>
-                        <button class="btn btn-warning float-right  offset-15 tr-translateform-submit" tr-status="accept"><i class="fa"></i>Accept</button>
+                    <div class="op-container nobgcolor op-margin-top tr-translateform-button">
+                        <button class="tr-translateform-submit btn btn-warning offset-15" type="submit" tr-status="cancel">Cancel</button>
+                        <button class="tr-translateform-submit btn btn-info offset-15" type="submit" tr-status="save"><i class="fa"></i>Save</button>
+                        <button class="tr-translateform-submit btn btn-success" type="submit" tr-status="accept"><i class="fa"></i>Accept</button>
                     </div>
                 </div>
                 <!-- } -->

@@ -42,7 +42,6 @@ steal(
             setTransaction: function (transaction, fromLanguageCode, toLanguageCode) {
                 var _this = this;
 
-
                 this.transaction = transaction;
                 this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
                 this.data.languageData.attr('toLanguageCode', toLanguageCode);
@@ -56,8 +55,10 @@ steal(
                 });
 
                 this.embeddTemplate('.tr-translateform-relatedTemplate', transaction.objectData.form);
-                this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translateform-relatedTemplate'));
                 this.form = new AD.op.Form(this.element.find('.tr-translateform-relatedTemplate'));
+                this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translateform-relatedTemplate'));
+                if (this.data.screenHeight)
+                    this.resize(this.data.screenHeight);
             },
 
             embeddTemplate: function (sel, templateInfo) {
@@ -122,9 +123,11 @@ steal(
             },
 
             resize: function (height) {
+                this.data.screenHeight = height;
+
                 if (this.dom.FormWidget) {
                     // TODO : Custom how minus height
-                    this.dom.FormWidget.resize({ height: height - 112 });
+                    this.dom.FormWidget.resize({ height: height - 215 });
                 }
             },
 
@@ -161,7 +164,7 @@ steal(
                     case 'cancel':
                         AD.op.Dialog.Confirm({
                             fnYes: function () {
-                                _this.embeddTemplate('.tr-translateform', _this.transaction.objectData.form);
+                                _this.embeddTemplate('.tr-translateform-relatedTemplate', _this.transaction.objectData.form);
                                 _this.buttons[status].ready();
                                 _this.buttonsEnable();
                             },

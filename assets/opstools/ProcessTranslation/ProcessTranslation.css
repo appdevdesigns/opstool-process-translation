@@ -8,4 +8,22 @@ li.trrequest-locked {
 
 .op-stage {
     overflow-y: auto !important;
+}   
+
+.nobgcolor {
+    background-color:transparent !important;
 }
+
+/* Left menu */
+.op-list li i {
+    float: left;
+    margin: 3px 6px 3px 0;
+    font-size: 35px;
+}
+
+/* Button */
+.tr-translateform-button {
+    width: 100%;
+    text-align: right;   
+}
+

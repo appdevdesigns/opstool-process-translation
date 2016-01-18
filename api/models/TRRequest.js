@@ -7,7 +7,7 @@
 
 module.exports = {
 
-  connection:"appdev_default",
+//connection:"appdev_default",
   
   tableName: "tr_request",
 
