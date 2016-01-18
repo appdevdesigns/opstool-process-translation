@@ -22,6 +22,11 @@ li.trrequest-locked {
     font-size: 35px;
 }
 
+/* Language Selector */
+.language-selector {
+    width: 250px !important;
+}
+
 /* Button */
 .tr-translateform-button {
     width: 100%;
