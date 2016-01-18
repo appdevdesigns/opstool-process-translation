@@ -1,5 +1,6 @@
 li.trrequest-locked { 
-    background-color: #333333; 
+    background-color: #777777; 
+    opacity: 0.2 !important;
 }
 
 .tr-translateform-relatedTemplate{

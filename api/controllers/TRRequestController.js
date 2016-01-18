@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing Trrequests
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var lockedIds = [];
 
 module.exports = {
 
@@ -17,6 +18,10 @@ module.exports = {
     lock: function (req, res) {
         var id = req.param('id');
         if (id) {
+            if (!lockedIds[id]) {
+                lockedIds.push(id);
+            }
+
             TRRequest.message(id, { locked: true }, req);
             res.AD.success({ locked: id });
         } else {
@@ -27,11 +32,17 @@ module.exports = {
     unlock: function (req, res) {
         var id = req.param('id');
         if (id) {
+            lockedIds = _.remove(lockedIds, id);
+
             TRRequest.message(id, { locked: false }, req);
             res.AD.success({ unlocked: id });
         } else {
             res.AD.error(new Error('must provide an id'));
         }
+    },
+
+    wholock: function (req, res) {
+        res.AD.success(lockedIds);
     }
 
 };

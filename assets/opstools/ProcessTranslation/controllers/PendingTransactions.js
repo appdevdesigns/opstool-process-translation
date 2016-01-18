@@ -102,10 +102,19 @@ steal(
             },
 
             setList: function (list) {
+                var _this = this;
+
                 this.data.listTransactions = list;
                 this.dom.list.html(can.view('PendingTranslateTransactions_List', { items: this.data.listTransactions, data: this.data }));
-                if (this.data.screenHeight)
-                    this.resize(this.data.screenHeight);
+                    
+                // Unable selected items
+                this.TRRequest.wholock(function (err, result) {
+                    result.forEach(function (lockedId) {
+                        var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
+                        foundEL.addClass('trrequest-locked');
+                    });
+                });
+
             },
 
             resize: function (height) {
@@ -153,6 +162,11 @@ steal(
                 }
 
                 ev.preventDefault();
+            },
+
+            'unload': function () {
+                //TODO : clear select items when leave page
+                this.clearSelectItems();
             }
 
         });

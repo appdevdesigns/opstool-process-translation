@@ -7,6 +7,9 @@ steal(
         // AD.Model.extend('[application].[Model]', {static}, {instance} );  --> Object
         AD.Model.extend('opstools.ProcessTranslation.TRRequest', {
             useSockets: true,
+            wholock: function (cb) {
+                return AD.comm.service.get({ url: '/opstool-process-translation/trrequest/wholock' }, cb);
+            } 
             /*
                     findAll: 'GET /trrequest',
                     findOne: 'GET /trrequest/{id}',
