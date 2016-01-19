@@ -22,6 +22,10 @@ li.trrequest-locked {
     font-size: 35px;
 }
 
+li.active {
+    font-weight: normal !important;
+}
+
 /* Language Selector */
 .language-selector {
     width: 100% !important;
@@ -30,6 +34,11 @@ li.trrequest-locked {
 .tr-languageselector, .tr-instructionsPanel {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+/*Form*/
+.tr-optionalinfo{
+    padding: 0 20px 25px 20px;
 }
 
 /* Button */
