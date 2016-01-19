@@ -97,7 +97,6 @@ steal(
                 // and don't forget to clear the List area:
                 this.dom.list.html('');
 
-
                 this.dom.ListWidget = new AD.op.Widget(this.element);
             },
 
@@ -114,11 +113,18 @@ steal(
                         foundEL.addClass('trrequest-locked');
                     });
                 });
-
+                
+                if (this.data.screenHeight) {
+                    this.resize(this.data.screenHeight);
+                }
             },
 
             resize: function (height) {
-                this.dom.ListWidget.resize({ height: height });
+                this.data.screenHeight = height;
+
+                if (this.dom.ListWidget) {
+                    this.dom.ListWidget.resize({ height: height });
+                }
             },
 
             selectLI: function ($el) {

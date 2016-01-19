@@ -1,9 +1,9 @@
 <div class="op-container op-widget-body">
-    <% if (data.optionalInfo) { %>
-        <div class="op-container tr-optionalinfo">
-            <img class="img-responsive" src="<%= data.optionalInfo.image %>">
-        </div>
-        <% } %>
+  <% if (data.optionalInfo && data.optionalInfo.image) { %>
+    <div class="op-container tr-optionalinfo">
+        <img class="img-responsive" src="<%= data.optionalInfo.image %>">
+    </div>
+    <% } %>
             <div class="op-container">
                 <div class="col-xs-6">
                     <% data.fields.each(function(field, fieldName) { %>

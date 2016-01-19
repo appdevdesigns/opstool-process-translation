@@ -42,6 +42,8 @@ steal(
             setTransaction: function (transaction, fromLanguageCode, toLanguageCode) {
                 var _this = this;
 
+                // TODO : Get TRlive 
+
                 this.transaction = transaction;
                 this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
                 this.data.languageData.attr('toLanguageCode', toLanguageCode);
@@ -108,7 +110,7 @@ steal(
                 }
             },
 
-            populateTransactionValues: function () {
+            populateTransactionToNewValues: function () {
                 
                 // save form values to the object
                 var formValues = this.form.values();
@@ -126,7 +128,6 @@ steal(
                 this.data.screenHeight = height;
 
                 if (this.dom.FormWidget) {
-                    // TODO : Custom how minus height
                     this.dom.FormWidget.resize({ height: height - 230 });
                 }
             },
@@ -143,7 +144,7 @@ steal(
                     case 'accept':
                         // TODO : confirm box ??
                     
-                        this.populateTransactionValues();
+                        this.populateTransactionToNewValues();
                         this.transaction.attr('status', 'processed');
                         this.transaction.save().then(function () {
                             _this.clearWorkspace();
@@ -155,7 +156,7 @@ steal(
                         });
                         break;
                     case 'save':
-                        this.populateTransactionValues();
+                        this.populateTransactionToNewValues();
                         this.transaction.save().then(function () {
                             _this.buttons[status].ready();
                             _this.buttonsEnable();
