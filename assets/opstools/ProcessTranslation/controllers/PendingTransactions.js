@@ -171,13 +171,7 @@ steal(
                 }
 
                 ev.preventDefault();
-            },
-
-            'unload': function () {
-                //TODO : clear select items when leave page
-                this.clearSelectItems();
             }
-
         });
 
 

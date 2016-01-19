@@ -64,6 +64,11 @@ steal(
 
                 var _this = this;
 
+                // When leave the page
+                this.on('opsportal.tool.hide', function () {
+                    _this.controllers.PendingTransactions.clearSelectItems();
+                });
+
                 this.controllers.PendingTransactions.element.on(this.CONST.ITEM_SELECTED, function (event, transaction) {
                     _this.controllers.TranslateWorkspace.setTransaction(transaction, _this.data.fromLanguageCode, _this.data.toLanguageCode);
                 });
