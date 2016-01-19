@@ -4,7 +4,21 @@
  * @description :: Server-side logic for managing Trrequests
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-var lockedIds = [];
+var lockedItems = [];
+
+ADCore.queue.subscribe('opsportal.socket.disconnect', function (message, socket) {
+    var socketId = socket.id;
+
+    _.forEach(lockedItems, function (lockedItem) {
+        if (lockedItem.socketId === socketId) {
+            TRRequest.message(lockedItem.id, { locked: false }, {});
+        }
+    });
+
+    _.remove(lockedItems, function (lockedItem) {
+        return lockedItem.socketId === socketId;
+    });
+});
 
 module.exports = {
 
@@ -18,8 +32,13 @@ module.exports = {
     lock: function (req, res) {
         var id = req.param('id');
         if (id) {
-            if (!lockedIds[id]) {
-                lockedIds.push(id);
+            var socketId = req.socket.id;
+
+            if (!lockedItems[id]) {
+                lockedItems.push({
+                    socketId: socketId,
+                    id: id
+                });
             }
 
             TRRequest.message(id, { locked: true }, req);
@@ -32,7 +51,9 @@ module.exports = {
     unlock: function (req, res) {
         var id = req.param('id');
         if (id) {
-            lockedIds = _.remove(lockedIds, id);
+            _.remove(lockedItems, function (lockedItem) {
+                return lockedItem.id === id;
+            });
 
             TRRequest.message(id, { locked: false }, req);
             res.AD.success({ unlocked: id });
@@ -42,7 +63,7 @@ module.exports = {
     },
 
     wholock: function (req, res) {
-        res.AD.success(lockedIds);
+        res.AD.success(_.map(lockedItems, function (item) { return item.id; }));
     }
 
 };
