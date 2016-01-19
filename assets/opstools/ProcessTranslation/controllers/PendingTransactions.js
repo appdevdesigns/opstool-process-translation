@@ -28,60 +28,8 @@ steal(
                 this.data = {};
                 this.data.listTransactions = null;
                 this.data.selectedRequest = null;
-                
-                // now get access to the TRRequest Model:
-                this.TRRequest = AD.Model.get('opstools.ProcessTranslation.TRRequest');
-                    
-                // listen for updates to any of our TRRequest models:
-                this.TRRequest.bind('updated', function (ev, request) {
 
-                    // only do something if this is no longer 'pending'
-                    if (request.status != 'pending') {
-
-                        // verify this request is in our displayed list
-                        var atIndex = self.data.listTransactions.indexOf(request);
-                        if (atIndex > -1) {
-
-                            // if so, remove the entry.
-                            self.data.listTransactions.splice(atIndex, 1);
-
-
-                            // decide which remaining element we want to click:
-                            var clickIndx = atIndex;  // choose next one if there.
-                            if (self.data.listTransactions.attr('length') <= clickIndx) {
-
-                                // not enough entries, so choose the last one then:
-                                clickIndx = self.data.listTransactions.attr('length') - 1;
-
-                            }
-
-                            // if there is one to select
-                            if (clickIndx >= 0) {
-
-                                // get that LI item:
-                                var allLIs = self.element.find('li');
-                                var indexLI = allLIs[clickIndx];
-
-                                // now select this LI:
-                                self.selectLI($(indexLI));
-
-                            }
-
-                        }
-                    }
-                });
-
-                this.TRRequest.on('messaged', function (ev, data) {
-                    // one of our transactions was messaged
-
-                    // see if we have an LI for this transaction:
-                    var foundEL = self.element.find('[trrequest-id="' + data.id + '"]');
-                    if (data.data.locked) {
-                        foundEL.addClass('trrequest-locked');
-                    } else {
-                        foundEL.removeClass('trrequest-locked');
-                    }
-                });
+                this.initModel();
             },
 
             initDOM: function () {
@@ -100,6 +48,61 @@ steal(
                 this.dom.ListWidget = new AD.op.Widget(this.element);
             },
 
+            initModel: function () {
+                var _this = this;
+                // now get access to the TRRequest Model:
+                this.TRRequest = AD.Model.get('opstools.ProcessTranslation.TRRequest');
+                
+                // listen for updates to any of our TRRequest models:
+                this.TRRequest.bind('updated', function (ev, request) {
+
+                    // only do something if this is no longer 'pending'
+                    if (request.status != 'pending') {
+
+                        // verify this request is in our displayed list
+                        var atIndex = _this.data.listTransactions.indexOf(request);
+                        if (atIndex > -1) {
+
+                            // if so, remove the entry.
+                            _this.data.listTransactions.splice(atIndex, 1);
+
+
+                            // decide which remaining element we want to click:
+                            var clickIndx = atIndex;  // choose next one if there.
+                            if (_this.data.listTransactions.attr('length') <= clickIndx) {
+
+                                // not enough entries, so choose the last one then:
+                                clickIndx = _this.data.listTransactions.attr('length') - 1;
+
+                            }
+
+                            // if there is one to select
+                            if (clickIndx >= 0) {
+
+                                // get that LI item:
+                                var allLIs = _this.element.find('li');
+                                var indexLI = allLIs[clickIndx];
+
+                                // now select this LI:
+                                _this.selectLI($(indexLI));
+
+                            }
+
+                        }
+                    }
+                });
+                
+                // Lock/Unlock pending items 
+                this.TRRequest.on('messaged', function (ev, data) {
+                    var foundEL = _this.element.find('[trrequest-id="' + data.id + '"]');
+                    if (data.data.locked) {
+                        foundEL.addClass('trrequest-locked');
+                    } else {
+                        foundEL.removeClass('trrequest-locked');
+                    }
+                });
+            },
+
             setList: function (list) {
                 var _this = this;
 
@@ -113,7 +116,7 @@ steal(
                         foundEL.addClass('trrequest-locked');
                     });
                 });
-                
+
                 if (this.data.screenHeight) {
                     this.resize(this.data.screenHeight);
                 }
