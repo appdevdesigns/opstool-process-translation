@@ -127,7 +127,7 @@ steal(
 
                 if (this.dom.FormWidget) {
                     // TODO : Custom how minus height
-                    this.dom.FormWidget.resize({ height: height - 215 });
+                    this.dom.FormWidget.resize({ height: height - 230 });
                 }
             },
 

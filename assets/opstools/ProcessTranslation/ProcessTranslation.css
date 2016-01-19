@@ -24,7 +24,12 @@ li.trrequest-locked {
 
 /* Language Selector */
 .language-selector {
-    width: 250px !important;
+    width: 100% !important;
+}
+
+.tr-languageselector, .tr-instructionsPanel {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Button */
