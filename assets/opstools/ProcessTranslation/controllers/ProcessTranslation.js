@@ -32,8 +32,8 @@ steal(
                 this._super(element, options);
 
                 this.data = {
-                    fromLanguageCode: "en", // TODO : Get default
-                    toLanguageCode: "ko" // TODO : Get default
+                    fromLanguageCode: "ko", // TODO : Get default
+                    toLanguageCode: AD.lang.currentLanguage
                 };
 
                 this.initDOM();
@@ -55,7 +55,7 @@ steal(
                 var PendingTransactions = AD.Control.get('opstools.ProcessTranslation.PendingTransactions');
                 var TranslateWorkspace = AD.Control.get('opstools.ProcessTranslation.TranslateWorkspace');
 
-                this.controllers.LanguageSelector = new LanguageSelector(this.element.find('.tr-languageselector'), { eventLanguageSelected: this.CONST.LANGUAGE_SELECTED });
+                this.controllers.LanguageSelector = new LanguageSelector(this.element.find('.tr-languageselector'), { eventLanguageSelected: this.CONST.LANGUAGE_SELECTED, fromLanguageCode: this.data.fromLanguageCode, toLanguageCode: this.data.toLanguageCode });
                 this.controllers.PendingTransactions = new PendingTransactions(this.element.find('.tr-pendingtransactions'), { eventItemSelected: this.CONST.ITEM_SELECTED });
                 this.controllers.TranslateWorkspace = new TranslateWorkspace(this.element.find('.tr-translateworkspace'), { eventItemAccepted: this.CONST.ITEM_ACCEPTED, fromLanguageCode: this.data.fromLanguageCode, toLanguageCode: this.data.toLanguageCode });
             },
