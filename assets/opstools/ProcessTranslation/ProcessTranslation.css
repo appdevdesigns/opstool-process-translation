@@ -31,6 +31,10 @@ li.active {
     width: 100% !important;
 }
 
+.tr-languageselector {
+    height: 40px;
+}
+
 .tr-languageselector, .tr-instructionsPanel {
     padding-left: 15px;
     padding-right: 15px;
