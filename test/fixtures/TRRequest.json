@@ -112,7 +112,7 @@
                         }
                     },
                     "optionalInfo": {
-                        "image": "/opstools/ProcessTranslation/views/testImage.jpg"
+                        "image": "/opstools/ProcessTranslation/views/testImage2.jpg"
                     }
                 },
                 "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
