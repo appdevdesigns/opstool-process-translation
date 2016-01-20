@@ -20,21 +20,18 @@ steal(
                 // Call parent init
                 this._super(element, options);
 
-
                 this.dataSource = this.options.dataSource; // AD.models.Projects;
 
+                this.data = new can.Map({
+                    listTransactions: new can.List([]),
+                    selectedRequest: null
+                });
+
                 this.initDOM();
-
-                this.data = {};
-                this.data.listTransactions = null;
-                this.data.selectedRequest = null;
-
                 this.initModel();
             },
 
             initDOM: function () {
-                // this.element.html(can.view(this.options.templateDOM, {} ));
-
                 // keep a reference to our list area:
                 this.dom = {};
                 this.dom.list = this.element.find('ul.op-list');
@@ -42,8 +39,7 @@ steal(
                 var template = this.domToTemplate(this.dom.list);
                 can.view.ejs('PendingTranslateTransactions_List', template);
 
-                // and don't forget to clear the List area:
-                this.dom.list.html('');
+                this.dom.list.html(can.view('PendingTranslateTransactions_List', { data: this.data }));
 
                 this.dom.ListWidget = new AD.op.Widget(this.element);
             },
@@ -52,7 +48,7 @@ steal(
                 var _this = this;
                 // now get access to the TRRequest Model:
                 this.TRRequest = AD.Model.get('opstools.ProcessTranslation.TRRequest');
-                
+
                 // listen for updates to any of our TRRequest models:
                 this.TRRequest.bind('updated', function (ev, request) {
 
@@ -106,14 +102,17 @@ steal(
             setList: function (list) {
                 var _this = this;
 
-                this.data.listTransactions = list;
-                this.dom.list.html(can.view('PendingTranslateTransactions_List', { items: this.data.listTransactions, data: this.data }));
+                this.data.attr('listTransactions', list);
                     
                 // Unable selected items
                 this.TRRequest.wholock(function (err, result) {
+                    if (err) return;
+
                     result.forEach(function (lockedId) {
-                        var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
-                        foundEL.addClass('trrequest-locked');
+                        if (_this.data.selectedRequest.getID() !== lockedId) {
+                            var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
+                            foundEL.addClass('trrequest-locked');
+                        }
                     });
                 });
 

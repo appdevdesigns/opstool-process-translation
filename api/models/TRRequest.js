@@ -23,12 +23,13 @@ module.exports = {
             in:[
             'pending',
             'processed'
-            ] 
+            ],
+            defaultsTo: 'pending'
     },
     
-    model : { type: 'string'},
+    model : { type: 'string' },
     
-    modelCond : { type: 'json'},
+    modelCond : { type: 'json' },
     
     toLanguageCode : {
         type : "string",
@@ -41,4 +42,3 @@ module.exports = {
     
   }
 };
-

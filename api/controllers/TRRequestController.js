@@ -63,7 +63,7 @@ module.exports = {
     },
 
     wholock: function (req, res) {
-        res.AD.success(_.map(lockedItems, function (item) { return item.id; }));
+        res.AD.success(_.map(lockedItems, function (item) { return parseInt(item.id); }));
     }
 
 };

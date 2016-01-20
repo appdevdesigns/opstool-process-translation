@@ -147,6 +147,8 @@ steal(
                         this.populateTransactionToNewValues();
                         this.transaction.attr('status', 'processed');
                         this.transaction.save().then(function () {
+                            // TODO : Send translate data back
+                            
                             _this.clearWorkspace();
 
                             _this.element.trigger(_this.options.eventItemAccepted, _this.transaction);

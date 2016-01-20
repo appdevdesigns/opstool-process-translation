@@ -1,7 +1,7 @@
 <div class="form-inline">
     <div class="col-xs-6">
         <label for="translateFromLanguage">From :</label>
-        <select id="translateFromLanguage" class="form-control input-sm language-selector" trrequest-trans="fromLanguage">
+        <select id="translateFromLanguage" trrequest-trans="fromLanguage" class="form-control input-sm language-selector">
             <% for (var code in fromLanguagesList.attr()) { %>
                 <option value="<%= code %>">
                     <%= fromLanguagesList[code] %>
@@ -11,7 +11,7 @@
     </div>
     <div class="col-xs-6">
         <label for="translateToLanguage">To :</label>
-        <select id="translateToLanguage" class="form-control input-sm language-selector" trrequest-trans="toLanguage">
+        <select id="translateToLanguage" trrequest-trans="toLanguage" class="form-control input-sm language-selector">
             <% for (var code in toLanguagesList.attr()) { %>
                 <option value="<%= code %>">
                     <%= toLanguagesList[code] %>

@@ -10,7 +10,7 @@
         <div class="op-widget-body">
             <ul class="op-list">
                 <!-- 
-                          items.forEach(function(item) { 
+                          data.attr('listTransactions').each(function(item) { 
 
                             var menuData = item.objectData.menu; 
                             var formData = item.objectData.form.data;
@@ -19,12 +19,13 @@
                             }
 
                             var active = '';
-                            if (data.selectedRequest && data.selectedRequest.getID() == item.getID() ) {
-                              active = ' active ';
+                            if (data.attr('selectedRequest') && data.attr('selectedRequest').getID() == item.getID()) {
+                              active = 'active';
                             }
 
                           -->
-                <li mockup-show="new-activity" class="op-container selected" trrequest-id="[[= item.getID() ]]" obj-embed="item">
+                          - [[= data.attr('selectedRequest').getID() == item.getID() =]]
+                <li mockup-show="new-activity" class="op-container selected [[= active ]]" trrequest-id="[[= item.getID() ]]" obj-embed="item">
                     <i class="fa [[= menuData.icon ]]"></i>
                     <div><strong>[[= menuData.action.key ]]</strong>
                         <br>
@@ -45,7 +46,6 @@
         </div>
     </div>
     <!--/Left bar-->
-
 </div>
 
 <!-- Main stage area -->

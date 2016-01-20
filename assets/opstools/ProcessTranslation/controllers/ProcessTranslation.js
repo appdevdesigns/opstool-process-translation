@@ -21,6 +21,7 @@ steal(
 
             init: function (element, options) {
                 var self = this;
+
                 options = AD.defaults({
                     templateDOM: '//opstools/ProcessTranslation/views/ProcessTranslation/ProcessTranslation.ejs',
                     resize_notification: 'ProcessTranslation.resize',
@@ -31,6 +32,7 @@ steal(
                 // Call parent init
                 this._super(element, options);
 
+                this.TRRequest = AD.Model.get('opstools.ProcessTranslation.TRRequest');
                 this.data = {
                     fromLanguageCode: "zh-hans", // TODO : Get default
                     toLanguageCode: AD.lang.currentLanguage
@@ -39,7 +41,7 @@ steal(
                 this.initDOM();
                 this.initControllers();
                 this.initEvents();
-                this.loadListData();
+                this.loadTranslateData();
             },
 
             initDOM: function () {
@@ -69,6 +71,11 @@ steal(
                     _this.controllers.PendingTransactions.clearSelectItems();
                 });
 
+                this.TRRequest.bind('stale', function (ev, request) {
+                    // Should notify to user ?
+                    _this.loadTranslateData(true);
+                });
+
                 this.controllers.PendingTransactions.element.on(this.CONST.ITEM_SELECTED, function (event, transaction) {
                     _this.controllers.TranslateWorkspace.setTransaction(transaction, _this.data.fromLanguageCode, _this.data.toLanguageCode);
                 });
@@ -84,23 +91,24 @@ steal(
                     }
                     else {
                         _this.data.toLanguageCode = selectedLanguage.language_code;
-                        _this.loadListData();
+                        _this.loadTranslateData();
                     }
                 })
             },
 
-            loadListData: function () {
+            loadTranslateData: function (reserveSelectedItem) {
+
                 var _this = this;
 
-                this.PARequest = AD.Model.get('opstools.ProcessTranslation.TRRequest');
-                this.PARequest.findAll({ status: 'pending', toLanguageCode: _this.data.toLanguageCode })
+                this.TRRequest.findAll({ status: 'pending', toLanguageCode: _this.data.toLanguageCode })
                     .fail(function (err) {
                         console.error('!!! Dang.  something went wrong:', err);
                     })
                     .then(function (list) {
-                        _this.controllers.PendingTransactions.clearSelectItems();
-                        _this.controllers.TranslateWorkspace.clearWorkspace();
-
+                        if (!reserveSelectedItem) {
+                            _this.controllers.PendingTransactions.clearSelectItems();
+                            _this.controllers.TranslateWorkspace.clearWorkspace();
+                        }
 
                         _this.controllers.PendingTransactions.setList(list);
 
