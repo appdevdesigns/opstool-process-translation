@@ -63,17 +63,17 @@ steal(
 
             refreshLanguagesList: function () {
                 for (var code in this.data.availableLanguages) {
-                    if (!this.data.fromLanguagesList[code] && code !== this.options.toLanguageCode) {
+                    if (!this.data.fromLanguagesList[code] && code !== this.data.toLanguageCode) {
                         this.data.fromLanguagesList.attr(code, this.data.availableLanguages[code]);
                     }
 
-                    if (!this.data.toLanguagesList[code] && code !== this.options.fromLanguageCode) {
+                    if (!this.data.toLanguagesList[code] && code !== this.data.fromLanguageCode) {
                         this.data.toLanguagesList.attr(code, this.data.availableLanguages[code]);
                     }
                 }
 
-                this.data.fromLanguagesList.removeAttr(this.options.toLanguageCode);
-                this.data.toLanguagesList.removeAttr(this.options.fromLanguageCode);
+                this.data.fromLanguagesList.removeAttr(this.data.toLanguageCode);
+                this.data.toLanguagesList.removeAttr(this.data.fromLanguageCode);
             },
 
             'select.language-selector change': function ($el, ev) {
