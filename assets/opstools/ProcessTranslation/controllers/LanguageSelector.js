@@ -3,7 +3,6 @@ steal(
     'appdev',
     '//opstools/ProcessTranslation/views/LanguageSelector/LanguageSelector.ejs',
     function () {
-
         // Namespacing conventions:
         AD.Control.extend('opstools.ProcessTranslation.LanguageSelector', {
 

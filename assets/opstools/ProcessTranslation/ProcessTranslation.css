@@ -26,6 +26,10 @@ li.active {
     font-weight: normal !important;
 }
 
+.op-widget-footer{
+    background-color: #555;
+}
+
 /* Language Selector */
 .language-selector {
     width: 100% !important;
@@ -43,6 +47,10 @@ li.active {
 /*Form*/
 .tr-optionalinfo{
     padding: 0 20px 25px 20px;
+}
+
+textarea.tr-field-data {
+   resize: none;
 }
 
 /* Button */

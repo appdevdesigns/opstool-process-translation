@@ -12,7 +12,7 @@
                                 <label>
                                     <%= data.labels[fieldName][languageData.attr('fromLanguageCode')] %> :
                                 </label>
-                                <textarea name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>" readonly class="form-control" rows="3"><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
+                                <textarea name="<%= fieldName + '.' + languageData.attr('fromLanguageCode') %>" readonly class="form-control tr-field-data" rows="3"><%= field.attr(languageData.attr('fromLanguageCode')) %></textarea>
                             </div>
                         </div>
                         <% }); %>
@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label>
                                     <%= data.labels[fieldName][languageData.attr('toLanguageCode')] %> ：</label>
-                                <textarea name="<%= fieldName + '.' + languageData.attr('toLanguageCode') %>" class="form-control" rows="3"><%= field.attr(languageData.attr('toLanguageCode')) %></textarea>
+                                <textarea name="<%= fieldName + '.' + languageData.attr('toLanguageCode') %>" class="form-control tr-field-data" rows="3"><%= field.attr(languageData.attr('toLanguageCode')) %></textarea>
                             </div>
                         </div>
                         <% }); %>
