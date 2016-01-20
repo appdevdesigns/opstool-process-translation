@@ -14,7 +14,7 @@ module.exports = function (cb) {
     AD.module.permissions(path.join(__dirname, '..', 'setup', 'permissions'), cb);
 
     ADCore.queue.subscribe('opsportal.translation.create', function (message, data) {
-        var requiredProperties = ['actionKey', 'userID', 'callback', 'model', 'modelCond', 'toLanguageCode', 'menu', 'form'];
+        var requiredProperties = ['actionKey', 'userID', 'callback', 'reference', 'model', 'modelCond', 'toLanguageCode', 'menu', 'form'];
         var allPropertiesFound = true;
         requiredProperties.forEach(function (prop) {
         
@@ -39,6 +39,7 @@ module.exports = function (cb) {
             trRequest.actionKey = data.actionKey;
             trRequest.userID = data.userID;
             trRequest.callback = data.callback;
+            trRequest.reference = data.reference;
             trRequest.status = 'pending';
             trRequest.model = data.model;
             trRequest.modelCond = data.modelCond;
@@ -63,9 +64,9 @@ module.exports = function (cb) {
         }
     });
 
-//     setInterval(function () {
-//         console.log('TRRequest is broadcasting...');
-//         sails.sockets.broadcast('sails_model_create_trrequest', 'trrequest', { verb: 'stale' });
-//     }, 3000);
+    setInterval(function () {
+        console.log('TRRequest is broadcasting...');
+        sails.sockets.broadcast('sails_model_create_trrequest', 'trrequest', { verb: 'stale' });
+    }, 3000);
 
 };

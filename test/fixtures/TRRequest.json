@@ -4,6 +4,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -65,6 +68,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -126,6 +132,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -187,6 +196,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.2",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -245,6 +257,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -303,6 +318,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -361,6 +379,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -419,6 +440,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
@@ -477,6 +501,9 @@
         "actionKey": "translation.tool.view",
         "userID": "user.1",
         "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
         "status": "pending",
         "model": "sailsModelName",
         "modelCond": {
