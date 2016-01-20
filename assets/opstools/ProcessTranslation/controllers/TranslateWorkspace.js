@@ -48,7 +48,7 @@ steal(
                 this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
                 this.data.languageData.attr('toLanguageCode', toLanguageCode);
 
-                this.element.html(can.view('TR_TranslateForm', { transaction: transaction }));
+                this.element.html(can.view('TR_TranslateForm', { transaction: transaction, data: transaction.objectData.form.data, languageData: this.data.languageData }));
                 this.element.find('.tr-instructionsPanel').hide();
                 this.element.find('.tr-translateform').show();
                 this.element.find('.tr-translateform-submit').each(function (index, btn) {
@@ -56,7 +56,7 @@ steal(
                     _this.buttons[status] = new AD.op.ButtonBusy(btn);
                 });
 
-                this.embeddTemplate('.tr-translateform-relatedTemplate', transaction.objectData.form);
+                // this.embeddTemplate('.tr-translateform-relatedTemplate', transaction.objectData.form);
                 this.form = new AD.op.Form(this.element.find('.tr-translateform-relatedTemplate'));
                 this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translateform-relatedTemplate'));
                 if (this.data.screenHeight)
@@ -67,7 +67,7 @@ steal(
                 var $el = this.element.find(sel);
 
                 try {
-                    $el.html(can.view(templateInfo.view, { data: templateInfo.data, languageData: this.data.languageData }));
+                    // $el.html(can.view(templateInfo.view, { data: templateInfo.data, languageData: this.data.languageData }));
                 } catch (e) {
                     // This is most likely a template reference error.
                     AD.error.log('Error displaying template:' + templateInfo.view, { error: e });

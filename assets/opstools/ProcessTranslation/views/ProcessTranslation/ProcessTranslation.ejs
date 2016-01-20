@@ -66,6 +66,34 @@
 	                </h3>
                     <div class="op-container op-block-border op-margin-top">
                         <div class="op-widget tr-translateform-relatedTemplate">
+                            <div class="op-container op-widget-body">
+                                <div class="op-container">
+                                    <div class="col-xs-6">
+                                        <!-- data.fields.each(function(field, fieldName) { -->
+                                        <div class="op-container">
+                                            <div class="form-group">
+                                                <label>
+                                                    [[= data.labels[fieldName][languageData.attr('fromLanguageCode')] ]] :
+                                                </label>
+                                                <textarea name="[[= fieldName + '.' + languageData.attr('fromLanguageCode') ]]" readonly class="form-control tr-field-data"
+                                                rows="3">[[= field.attr(languageData.attr('fromLanguageCode')) ]]</textarea>
+                                            </div>
+                                        </div>
+                                        <!-- }); -->
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <!-- data.fields.each(function(field, fieldName) { -->
+                                        <div class="op-container">
+                                            <div class="form-group">
+                                                <label>
+                                                    [[= data.labels[fieldName][languageData.attr('toLanguageCode')] ]] ：</label>
+                                                <textarea name="[[= fieldName + '.' + languageData.attr('toLanguageCode') ]]" class="form-control tr-field-data" rows="3">[[= field.attr(languageData.attr('toLanguageCode')) ]]</textarea>
+                                            </div>
+                                        </div>
+                                        <!-- }); -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
