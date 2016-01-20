@@ -32,6 +32,7 @@ steal(
                 var _this = this;
                 AD.lang.list().then(function (languages) {
                     _this.data.availableLanguages = languages;
+                    _this.data.availableLanguages['th'] = "Thai";
 
                     _this.data.fromLanguagesList = new can.Map(_this.data.availableLanguages);
                     _this.data.toLanguagesList = new can.Map(_this.data.availableLanguages);

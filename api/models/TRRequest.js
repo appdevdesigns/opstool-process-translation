@@ -18,6 +18,8 @@ module.exports = {
     userID : { type: 'string' },
 
     callback : { type: 'string' },
+    
+    reference : { type: 'json' },
 
     status : { type: 'string',
             in:[
@@ -38,7 +40,27 @@ module.exports = {
     },
 
     objectData : { type: 'json' },
-    
-    
+  },
+  
+  
+  
+  afterUpdate: function(updatedRecord, cb) {
+
+    if (updatedRecord.status === 'processed') {
+
+      // then this entry is finished being processed
+
+      // Compile data to return to the calling application
+      var returnData = {};
+      returnData.id = updatedRecord.reference.id;
+      returnData.toLanguageCode = updatedRecord.toLanguageCode;
+      returnData.fields = updatedRecord.objectData.form.fields;
+
+      ADCore.queue.publish(updatedRecord.callback, returnData);
+    }
+
+    cb();
   }
+  
+  
 };
