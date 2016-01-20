@@ -10,8 +10,8 @@ steal(
             init: function (element, options) {
                 var self = this;
                 options = AD.defaults({
-                    fromLanguageCode: 'en',
-                    toLanguageCode: 'ko',
+                    fromLanguageCode: 'zh-hans',
+                    toLanguageCode: 'en',
                     eventLanguageSelected: 'LANGUAGE_SELECTED',
                     templateDOM: '//opstools/ProcessTranslation/views/LanguageSelector/LanguageSelector.ejs'
                 }, options);
@@ -21,6 +21,8 @@ steal(
                 this._super(element, options);
 
                 this.data = {};
+                this.data.fromLanguageCode = this.options.fromLanguageCode;
+                this.data.toLanguageCode = this.options.toLanguageCode;
 
                 this.dataSource = this.options.dataSource; // AD.models.Projects;
 
@@ -31,12 +33,16 @@ steal(
                 var _this = this;
                 AD.lang.list().then(function (languages) {
                     _this.data.availableLanguages = languages;
+
                     _this.data.fromLanguagesList = new can.Map(_this.data.availableLanguages);
                     _this.data.toLanguagesList = new can.Map(_this.data.availableLanguages);
 
                     _this.refreshLanguagesList();
 
-                    _this.element.html(can.view(_this.options.templateDOM, { fromLanguagesList: _this.data.fromLanguagesList, toLanguagesList: _this.data.toLanguagesList, fromLanguageCode: _this.options.fromLanguageCode, toLanguageCode: _this.options.toLanguageCode }));
+                    _this.element.html(can.view(_this.options.templateDOM, { fromLanguagesList: _this.data.fromLanguagesList, toLanguagesList: _this.data.toLanguagesList }));
+                    
+                    _this.element.find('#translateFromLanguage').val(_this.data.fromLanguageCode);
+                    _this.element.find('#translateToLanguage').val(_this.data.toLanguageCode);
                 });
             },
 
@@ -45,9 +51,9 @@ steal(
                 var val = $el.find('option:selected').val();
 
                 if (trans === 'fromLanguage') {
-                    this.options.fromLanguageCode = val;
+                    this.data.fromLanguageCode = val;
                 } else {
-                    this.options.toLanguageCode = val;
+                    this.data.toLanguageCode = val;
                 }
 
                 this.refreshLanguagesList();

@@ -32,7 +32,7 @@ steal(
                 this._super(element, options);
 
                 this.data = {
-                    fromLanguageCode: "ko", // TODO : Get default
+                    fromLanguageCode: "zh-hans", // TODO : Get default
                     toLanguageCode: AD.lang.currentLanguage
                 };
 
@@ -105,8 +105,6 @@ steal(
                         _this.controllers.PendingTransactions.setList(list);
 
                         _this.data.list = list;
-
-                        console.log('... here is our list of pending transactions:', list);
                     });
             },
 
