@@ -109,7 +109,7 @@ steal(
                     if (err) return;
 
                     result.forEach(function (lockedId) {
-                        if (_this.data.attr('selectedItem').getID() !== lockedId) {
+                        if (_this.data.selectedItem.getID() !== lockedId) {
                             var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
                             foundEL.addClass('trrequest-locked');
                         }
@@ -135,10 +135,10 @@ steal(
                 $el.addClass('active');
 
                 var model = $el.data('item');
-                this.data.attr('selectedItem', model);
+                this.data.selectedItem = model;
 
                 // lock the newly selected model:
-                this.data.attr('selectedItem').lock();
+                this.data.selectedItem.lock();
 
                 this.element.trigger(this.options.eventItemSelected, model);
             },
@@ -156,8 +156,8 @@ steal(
             },
 
             clearSelectItems: function () {
-                if (this.data.attr('selectedItem')) {
-                    this.data.attr('selectedItem').unlock();
+                if (this.data.selectedItem) {
+                    this.data.selectedItem.unlock();
                     this.data.selectedItem = null;
                 }
 

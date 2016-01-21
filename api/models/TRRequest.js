@@ -52,9 +52,24 @@ module.exports = {
 
       // Compile data to return to the calling application
       var returnData = {};
-      returnData.id = updatedRecord.reference.id;
-      returnData.toLanguageCode = updatedRecord.toLanguageCode;
-      returnData.fields = updatedRecord.objectData.form.fields;
+      if (typeof(updatedRecord.reference) === 'string') {
+          returnData.reference = JSON.parse(updatedRecord.reference); 
+      } else {
+          returnData.reference = updatedRecord.reference;
+      }
+
+      returnData.language_code = updatedRecord.toLanguageCode;
+      
+      var objData = updatedRecord.objectData;
+      if (typeof(updatedRecord.objectData) === 'string') {
+          objData = JSON.parse(updatedRecord.objectData);
+      }
+
+      var fields = {};
+      _.forOwn(objData.form.data.fields, function(value, key) {
+          fields[key] = value[returnData.language_code];
+      });
+      returnData.fields = fields;
 
       ADCore.queue.publish(updatedRecord.callback, returnData);
     }

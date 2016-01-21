@@ -29,7 +29,7 @@ steal(
                     // Set default from language when it's not specified
                     for (var code in self.data.availableLanguages) {
                         if (code !== self.data.toLanguageCode) {
-                            self.data.fromLanguageCode = code;
+                            self.selectLanguage('fromLanguage', code);
                             break;
                         }
                     }
@@ -51,10 +51,7 @@ steal(
                 _this.element.find('#translateToLanguage').val(_this.data.toLanguageCode);
             },
 
-            selectLanguage: function ($el) {
-                var trans = $el.attr('trrequest-trans');
-                var val = $el.find('option:selected').val();
-
+            selectLanguage: function (trans, val) {
                 if (trans === 'fromLanguage') {
                     this.data.fromLanguageCode = val;
                 } else {
@@ -67,6 +64,9 @@ steal(
             },
 
             refreshLanguagesList: function () {
+                if (Object.keys(this.data.availableLanguages).length < 3)
+                    return;
+
                 for (var code in this.data.availableLanguages) {
                     if (!this.data.fromLanguagesList[code] && code !== this.data.toLanguageCode) {
                         this.data.fromLanguagesList.attr(code, this.data.availableLanguages[code]);
@@ -82,7 +82,10 @@ steal(
             },
 
             'select.language-selector change': function ($el, ev) {
-                this.selectLanguage($el);
+                var trans = $el.attr('trrequest-trans');
+                var val = $el.find('option:selected').val();
+
+                this.selectLanguage(trans, val);
             }
 
         });
