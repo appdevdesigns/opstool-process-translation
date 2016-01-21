@@ -53,7 +53,6 @@ module.exports = {
       // Compile data to return to the calling application
       var returnData = {};
 
-
       // afterUpdate does not provide the json fields as a object
       // so we have to convert them with JSON.parse() before using them:
       returnData.reference = JSON.parse( updatedRecord.reference );
