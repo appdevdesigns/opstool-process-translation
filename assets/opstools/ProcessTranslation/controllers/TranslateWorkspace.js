@@ -41,10 +41,19 @@ steal(
 
             setTransaction: function (transaction, fromLanguageCode, toLanguageCode) {
                 var _this = this;
-
-                // TODO : Get TRlive 
-
                 this.transaction = transaction;
+                
+                // Get TRlive
+                this.transaction.getLiveTrData(function (err, data) {
+                    for (var fieldName in data) {
+                        var liveData = data[fieldName];
+
+                        for (var languageCode in liveData) {
+                            transaction.objectData.form.data.fields[fieldName].attr(languageCode, liveData[languageCode]);
+                        }
+                    }
+                });
+
                 this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
                 this.data.languageData.attr('toLanguageCode', toLanguageCode);
 
@@ -149,7 +158,7 @@ steal(
                     
                         this.populateTransactionToNewValues();
                         this.transaction.attr('status', 'processed');
-                        this.transaction.save().then(function () {                            
+                        this.transaction.save().then(function () {
                             _this.clearWorkspace();
 
                             _this.element.trigger(_this.options.eventItemAccepted, _this.transaction);
