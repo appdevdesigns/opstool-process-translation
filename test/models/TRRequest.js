@@ -21,6 +21,8 @@ describe('TRRequest', function () {
             });
     });
 
+    // Required fields
+    
     it('should actionKey field is required', function (done) {
         var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
         var fixtureData = JSON.parse(data);
@@ -34,8 +36,8 @@ describe('TRRequest', function () {
             done();
         });
     });
-    
-     it('should userID field is required', function (done) {
+
+    it('should userID field is required', function (done) {
         var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
         var fixtureData = JSON.parse(data);
         var trData = fixtureData[0];
@@ -48,8 +50,8 @@ describe('TRRequest', function () {
             done();
         });
     });
-    
-     it('should callback field is required', function (done) {
+
+    it('should callback field is required', function (done) {
         var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
         var fixtureData = JSON.parse(data);
         var trData = fixtureData[0];
@@ -62,6 +64,79 @@ describe('TRRequest', function () {
             done();
         });
     });
+
+    it('should reference field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.reference;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should model field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.model;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should modelCond field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.modelCond;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should toLanguageCode field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.toLanguageCode;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should objectData field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.objectData;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+
+    // Check status
 
     it('should show error when set invalid status', function (done) {
 
@@ -108,6 +183,8 @@ describe('TRRequest', function () {
         });
 
     });
+    
+    // Callback
 
     it('should callback to sender when translate data completes', function (done) {
         var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));

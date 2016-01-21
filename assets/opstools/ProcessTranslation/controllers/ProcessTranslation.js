@@ -67,6 +67,7 @@ steal(
                 // When leave the page
                 this.on('opsportal.tool.hide', function () {
                     _this.controllers.PendingTransactions.clearSelectItems();
+                    _this.controllers.TranslateWorkspace.clearWorkspace();
                 });
 
                 this.TRRequest.bind('stale', function (ev, request) {
