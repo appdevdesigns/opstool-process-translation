@@ -9,7 +9,6 @@ steal(
             init: function (element, options) {
                 var self = this;
                 options = AD.defaults({
-                    fromLanguageCode: 'zh-hans',
                     toLanguageCode: 'en',
                     eventLanguageSelected: 'LANGUAGE_SELECTED',
                     templateDOM: '//opstools/ProcessTranslation/views/LanguageSelector/LanguageSelector.ejs'
@@ -19,31 +18,37 @@ steal(
                 // Call parent init
                 this._super(element, options);
 
+                // Get available languages
+                AD.lang.list().then(function (languages) {
+                    self.data.availableLanguages = languages;
+
+                    self.data.fromLanguagesList = new can.Map(self.data.availableLanguages);
+                    self.data.toLanguagesList = new can.Map(self.data.availableLanguages);
+                    self.data.toLanguageCode = self.options.toLanguageCode;
+
+                    // Set default from language when it's not specified
+                    for (var code in self.data.availableLanguages) {
+                        if (code !== self.data.toLanguageCode) {
+                            self.data.fromLanguageCode = code;
+                            break;
+                        }
+                    }
+
+                    self.refreshLanguagesList();
+
+                    self.initDOM();
+                });
+
                 this.data = {};
-                this.data.fromLanguageCode = this.options.fromLanguageCode;
-                this.data.toLanguageCode = this.options.toLanguageCode;
-
                 this.dataSource = this.options.dataSource; // AD.models.Projects;
-
-                self.initDOM();
             },
 
             initDOM: function () {
                 var _this = this;
-                AD.lang.list().then(function (languages) {
-                    _this.data.availableLanguages = languages;
-                    _this.data.availableLanguages['th'] = "Thai";
+                _this.element.html(can.view(_this.options.templateDOM, { fromLanguagesList: _this.data.fromLanguagesList, toLanguagesList: _this.data.toLanguagesList }));
 
-                    _this.data.fromLanguagesList = new can.Map(_this.data.availableLanguages);
-                    _this.data.toLanguagesList = new can.Map(_this.data.availableLanguages);
-
-                    _this.refreshLanguagesList();
-
-                    _this.element.html(can.view(_this.options.templateDOM, { fromLanguagesList: _this.data.fromLanguagesList, toLanguagesList: _this.data.toLanguagesList }));
-                    
-                    _this.element.find('#translateFromLanguage').val(_this.data.fromLanguageCode);
-                    _this.element.find('#translateToLanguage').val(_this.data.toLanguageCode);
-                });
+                _this.element.find('#translateFromLanguage').val(_this.data.fromLanguageCode);
+                _this.element.find('#translateToLanguage').val(_this.data.toLanguageCode);
             },
 
             selectLanguage: function ($el) {
