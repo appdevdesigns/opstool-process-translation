@@ -43,9 +43,7 @@ module.exports = {
     objectData : { type: 'json', required: true },
   },
   
-  
-  
-  afterUpdate: function(updatedRecord, cb) {
+   afterUpdate: function(updatedRecord, cb) {
 
     if (updatedRecord.status === 'processed') {
 
@@ -56,7 +54,11 @@ module.exports = {
 
       // afterUpdate does not provide the json fields as a object
       // so we have to convert them with JSON.parse() before using them:
-      returnData.reference = JSON.parse( updatedRecord.reference );
+      if (typeof(updatedRecord.reference) === 'string') {
+          returnData.reference = JSON.parse( updatedRecord.reference );
+      } else {
+          returnData.reference = updatedRecord.reference;          
+      }
       returnData.language_code = updatedRecord.toLanguageCode;
 
       // convert objectData:
@@ -94,10 +96,9 @@ module.exports = {
       returnData.fields = fields;
 
       ADCore.queue.publish(updatedRecord.callback, returnData);
-    }
+     }
 
     cb();
   }
-  
   
 };

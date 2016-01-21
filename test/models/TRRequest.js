@@ -109,7 +109,7 @@ describe('TRRequest', function () {
 
     });
 
-    it('should callback to sender when translate data complates', function (done) {
+    it('should callback to sender when translate data completes', function (done) {
         var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
         var fixtureData = JSON.parse(data);
         var updatedData = fixtureData[0];
