@@ -21,6 +21,48 @@ describe('TRRequest', function () {
             });
     });
 
+    it('should actionKey field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.actionKey;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+    
+     it('should userID field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.userID;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+    
+     it('should callback field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.callback;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
     it('should show error when set invalid status', function (done) {
 
         TRRequest.update({ id: 1 }, {
