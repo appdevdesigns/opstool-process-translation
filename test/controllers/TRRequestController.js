@@ -1,4 +1,6 @@
 var assert = require('chai').assert;
+var fs = require("fs");
+var path = require("path");
 
 var AD = require('ad-utils');
 var request = null;
@@ -97,38 +99,27 @@ describe('TRRequestController', function () {
 
     it('should update data on our REST put route', function (done) {
         var id = '1';
-        var updateModel = {
-            "status": 'processed',
-            "objectData": {
-                "menu": {
-                    "icon": "icon-edit",
-                    "action": {
-                        "key": "key-edit",
-                        "context": "context-edit"
-                    },
-                    "fromLanguage": "fromLanguage-edit",
-                    "toLanguage": "toLanguage-edit"
-                }
-            }
-        };
-
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var updatedData = fixtureData[0];
+        updatedData.status = 'processed';
+        
         request
             .put('/opstool-process-translation/trrequest/' + id)
-            .send(updateModel)
+            .send(updatedData)
             .set('Accept', 'application/json')
             .expect(200)
             .end(function (err, res) {
                 assert.isNull(err);
 
-                assert.equal(updateModel.status, res.body.status);
-                assert.equal(updateModel.status, res.body.status);
+                assert.equal(updatedData.status, res.body.status);
 
                 done(err);
             });
 
     });
-    
-      it('should not allow when update invalid status on our REST put route', function (done) {
+
+    it('should not allow when update invalid status on our REST put route', function (done) {
         var id = '1';
         var updateModel = {
             "status": 'invalid'

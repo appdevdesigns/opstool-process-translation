@@ -1,4 +1,6 @@
 var assert = require('chai').assert;
+var fs = require("fs");
+var path = require("path");
 
 describe('TRRequest', function () {
 
@@ -42,9 +44,12 @@ describe('TRRequest', function () {
     });
 
     it('should allow when set processed status', function (done) {
-        TRRequest.update({ id: 1 }, {
-            status: 'processed'
-        }).exec(function (err, result) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var updatedData = fixtureData[0];
+        updatedData.status = 'processed';
+
+        TRRequest.update({ id: updatedData["id"] }, updatedData).exec(function (err, result) {
             assert.isNull(err, ' --> should not show any errors');
             assert.isNotNull(result, ' --> should return result');
             done();
@@ -60,6 +65,27 @@ describe('TRRequest', function () {
             done();
         });
 
+    });
+
+    it('should callback to sender when translate data complates', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var updatedData = fixtureData[0];
+        updatedData.status = 'processed';
+        updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode] = "It's edited";
+        updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
+
+        ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
+            assert.deepEqual(returnData.reference, updatedData.reference);
+            assert.equal(returnData.language_code, updatedData.toLanguageCode);
+            assert.equal(returnData.fields['caption'], updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode]);
+            assert.equal(returnData.fields['description'], updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode]);
+            done();
+        });
+
+        TRRequest.update({ id: updatedData["id"] }, updatedData).exec(function (err, result) {
+            assert.isNull(err, ' --> should not show any error');
+        });
     });
 
 });
