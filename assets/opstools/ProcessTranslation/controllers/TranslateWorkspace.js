@@ -50,24 +50,27 @@ steal(
 
                 this.element.html(can.view('TR_TranslateForm', { transaction: transaction, data: transaction.objectData.form.data, languageData: this.data.languageData }));
                 this.element.find('.tr-instructionsPanel').hide();
-                this.element.find('.tr-translateform').show();
+                this.element.find('.tr-translateform-panel').show();
                 this.element.find('.tr-translateform-submit').each(function (index, btn) {
                     var status = $(btn).attr('tr-status');
                     _this.buttons[status] = new AD.op.ButtonBusy(btn);
                 });
 
-                // this.embeddTemplate('.tr-translateform-relatedTemplate', transaction.objectData.form);
-                this.form = new AD.op.Form(this.element.find('.tr-translateform-relatedTemplate'));
-                this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translateform-relatedTemplate'));
+                this.embeddTemplate('.tr-optionalinfo', transaction.objectData.form);
+                this.form = new AD.op.Form(this.element.find('.tr-translateform'));
+                this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translate-body'));
                 if (this.data.screenHeight)
                     this.resize(this.data.screenHeight);
             },
 
             embeddTemplate: function (sel, templateInfo) {
+                if (!templateInfo.view || !templateInfo.data.optionalInfo)
+                    return;
+
                 var $el = this.element.find(sel);
 
                 try {
-                    // $el.html(can.view(templateInfo.view, { data: templateInfo.data, languageData: this.data.languageData }));
+                    $el.html(can.view(templateInfo.view, { data: templateInfo.data.optionalInfo }));
                 } catch (e) {
                     // This is most likely a template reference error.
                     AD.error.log('Error displaying template:' + templateInfo.view, { error: e });
@@ -91,8 +94,8 @@ steal(
 
             clearWorkspace: function () {
                 this.transaction = null;
-                this.element.find('.tr-translateform-relatedTemplate').html('');
-                this.element.find('.tr-translateform').hide();
+                this.element.find('.tr-translateform').html('');
+                this.element.find('.tr-translateform-panel').hide();
                 this.element.find('.tr-instructionsPanel').show();
             },
 
@@ -167,7 +170,7 @@ steal(
                     case 'cancel':
                         AD.op.Dialog.Confirm({
                             fnYes: function () {
-                                _this.embeddTemplate('.tr-translateform-relatedTemplate', _this.transaction.objectData.form);
+                                _this.embeddTemplate('.tr-translateform', _this.transaction.objectData.form);
                                 _this.buttons[status].ready();
                                 _this.buttonsEnable();
                             },
