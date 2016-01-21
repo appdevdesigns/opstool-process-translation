@@ -149,9 +149,7 @@ steal(
                     
                         this.populateTransactionToNewValues();
                         this.transaction.attr('status', 'processed');
-                        this.transaction.save().then(function () {
-                            // TODO : Send translate data back
-                            
+                        this.transaction.save().then(function () {                            
                             _this.clearWorkspace();
 
                             _this.element.trigger(_this.options.eventItemAccepted, _this.transaction);
@@ -170,7 +168,7 @@ steal(
                     case 'cancel':
                         AD.op.Dialog.Confirm({
                             fnYes: function () {
-                                _this.embeddTemplate('.tr-translateform', _this.transaction.objectData.form);
+                                _this.setTransaction(_this.transaction, _this.data.languageData.attr('fromLanguageCode'), _this.data.languageData.attr('toLanguageCode'));
                                 _this.buttons[status].ready();
                                 _this.buttonsEnable();
                             },
