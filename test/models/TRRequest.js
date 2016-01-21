@@ -76,16 +76,38 @@ describe('TRRequest', function () {
         updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
 
         ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
-            assert.deepEqual(returnData.reference, updatedData.reference);
-            assert.equal(returnData.language_code, updatedData.toLanguageCode);
-            assert.equal(returnData.fields['caption'], updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode]);
-            assert.equal(returnData.fields['description'], updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode]);
+            assert.deepEqual(returnData.reference, updatedData.reference, ' --> should match reference data');
+            assert.equal(returnData.language_code, updatedData.toLanguageCode, ' --> should match language code');
+            assert.equal(returnData.fields['caption'], updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode], ' --> should match caption value');
+            assert.equal(returnData.fields['description'], updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode], ' --> should match description value');
             done();
         });
 
         TRRequest.update({ id: updatedData["id"] }, updatedData).exec(function (err, result) {
             assert.isNull(err, ' --> should not show any error');
         });
+    });
+
+    it('should not callback when save translate data', function (done, test) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var updatedData = fixtureData[0];
+        updatedData.status = 'pending';
+        updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode] = "It's edited";
+        updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
+
+        ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
+            done('Should not publish callback');
+        });
+
+        TRRequest.update({ id: updatedData["id"] }, updatedData).exec(function (err, result) {
+            assert.isNull(err, ' --> should not show any error');
+
+            setTimeout(function () {
+                done();
+            }, 1900);
+        });
+
     });
 
 });
