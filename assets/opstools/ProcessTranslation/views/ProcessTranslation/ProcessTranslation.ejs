@@ -14,12 +14,9 @@
 
                             var menuData = item.objectData.menu; 
                             var formData = item.objectData.form.data;
-                            if (!menuData) {
-                              menuData = item.objectData.objectData.menu;
-                            }
 
                             var active = '';
-                            if (data.attr('selectedRequest') && data.attr('selectedRequest').getID() == item.getID()) {
+                            if (data.attr('selectedItem') && data.attr('selectedItem').getID() == item.getID()) {
                               active = 'active';
                             }
 

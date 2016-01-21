@@ -64,9 +64,4 @@ module.exports = function (cb) {
         }
     });
 
-    // setInterval(function () {
-    //     console.log('TRRequest is broadcasting...');
-    //     sails.sockets.broadcast('sails_model_create_trrequest', 'trrequest', { verb: 'stale' });
-    // }, 3000);
-
 };

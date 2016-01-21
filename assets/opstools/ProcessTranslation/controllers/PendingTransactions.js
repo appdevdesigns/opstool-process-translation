@@ -24,7 +24,7 @@ steal(
 
                 this.data = new can.Map({
                     listTransactions: new can.List([]),
-                    selectedRequest: null
+                    selectedItem: null
                 });
 
                 this.initDOM();
@@ -109,7 +109,7 @@ steal(
                     if (err) return;
 
                     result.forEach(function (lockedId) {
-                        if (_this.data.selectedRequest.getID() !== lockedId) {
+                        if (_this.data.attr('selectedItem').getID() !== lockedId) {
                             var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
                             foundEL.addClass('trrequest-locked');
                         }
@@ -135,10 +135,10 @@ steal(
                 $el.addClass('active');
 
                 var model = $el.data('item');
-                this.data.selectedRequest = model;
+                this.data.attr('selectedItem', model);
 
                 // lock the newly selected model:
-                this.data.selectedRequest.lock();
+                this.data.attr('selectedItem').lock();
 
                 this.element.trigger(this.options.eventItemSelected, model);
             },
@@ -156,9 +156,9 @@ steal(
             },
 
             clearSelectItems: function () {
-                if (this.data.selectedRequest) {
-                    this.data.selectedRequest.unlock();
-                    this.data.selectedRequest = null;
+                if (this.data.attr('selectedItem')) {
+                    this.data.attr('selectedItem').unlock();
+                    this.data.selectedItem = null;
                 }
 
                 this.element.find('.active').removeClass('active');
