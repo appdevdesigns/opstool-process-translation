@@ -114,14 +114,12 @@ describe('TRRequest', function () {
         var fixtureData = JSON.parse(data);
         var updatedData = fixtureData[0];
         updatedData.status = 'processed';
-        updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode] = "It's edited";
-        updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
+        updatedData.objectData.form.data.fields.action_description[updatedData.toLanguageCode] = "It's edited";
 
         ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
             assert.deepEqual(returnData.reference, updatedData.reference, ' --> should match reference data');
             assert.equal(returnData.language_code, updatedData.toLanguageCode, ' --> should match language code');
-            assert.equal(returnData.fields['caption'], updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode], ' --> should match caption value');
-            assert.equal(returnData.fields['description'], updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode], ' --> should match description value');
+            assert.equal(returnData.fields['action_description'], updatedData.objectData.form.data.fields.action_description[updatedData.toLanguageCode], ' --> should match description value');
             done();
         });
 
@@ -135,8 +133,7 @@ describe('TRRequest', function () {
         var fixtureData = JSON.parse(data);
         var updatedData = fixtureData[0];
         updatedData.status = 'pending';
-        updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode] = "It's edited";
-        updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
+        updatedData.objectData.form.data.fields.action_description[updatedData.toLanguageCode] = "It's edited";
 
         ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
             done('Should not publish callback');
