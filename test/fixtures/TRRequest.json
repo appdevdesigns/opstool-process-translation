@@ -438,5 +438,121 @@
                 "view": "/opstools/ProcessTranslation/views/testActivity.ejs"
             }
         }
+    },
+    {
+        "id": "10",
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
+        "status": "pending",
+        "model": "permissionroletrans",
+        "modelCond": {
+            "role": 1
+        },
+        "toLanguageCode": "en",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Admin Role",
+                    "context": "application.context"
+                },
+                "fromLanguage": "Chinese",
+                "toLanguage": "English"
+            },
+            "form": {
+                "data": {
+                    "fields": {
+                        "role_label": {
+                            "en": "my english translation 3",
+                            "ko": "[ko]my english translation 3",
+                            "zh-hans": "[zh-hans]my english translation 3",
+                            "th": "[th]my english translation 3"
+                        },
+                        "role_description": {
+                            "en": "my english translation 3",
+                            "ko": "[ko]my english translation 3",
+                            "zh-hans": "[zh-hans]my english translation 3",
+                            "th": "[th]my english translation 3"
+                        }
+                    },
+                    "labels": {
+                        "role_label": {
+                            "en": "Label",
+                            "ko": "상표",
+                            "zh-hans": "標籤",
+                            "th": "หัวข้อ"
+                        },
+                        "role_description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "id": "11",
+        "actionKey": "translation.tool.view",
+        "userID": "user.1",
+        "callback": "return.message.queue.1",
+        "reference": {
+            "id": "referenceId"
+        },
+        "status": "pending",
+        "model": "permissionroletrans",
+        "modelCond": {
+            "role": 2
+        },
+        "toLanguageCode": "en",
+        "objectData": {
+            "menu": {
+                "icon": "fa-calendar",
+                "action": {
+                    "key": "Test Role",
+                    "context": "application.context"
+                },
+                "fromLanguage": "Chinese",
+                "toLanguage": "English"
+            },
+            "form": {
+               "data": {
+                    "fields": {
+                        "role_label": {
+                            "en": "my english translation 4",
+                            "ko": "[ko]my english translation 4",
+                            "zh-hans": "[zh-hans]my english translation 4",
+                            "th": "[th]my english translation 4"
+                        },
+                        "role_description": {
+                            "en": "my english translation 4",
+                            "ko": "[ko]my english translation 4",
+                            "zh-hans": "[zh-hans]my english translation 4",
+                            "th": "[th]my english translation 4"
+                        }
+                    },
+                    "labels": {
+                        "role_label": {
+                            "en": "Label",
+                            "ko": "상표",
+                            "zh-hans": "標籤",
+                            "th": "หัวข้อ"
+                        },
+                        "role_description": {
+                            "en": "Description",
+                            "ko": "기술",
+                            "zh-hans": "描述",
+                            "th": "รายละเอียด"
+                        }
+                    }
+                }
+            }
+        }
     }
 ]
