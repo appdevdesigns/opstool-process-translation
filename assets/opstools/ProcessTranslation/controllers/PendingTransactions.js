@@ -165,7 +165,7 @@ steal(
             },
 
             'li click': function ($el, ev) {
-                if (!$el.hasClass('trrequest-locked')) {
+                if (!$el.hasClass('trrequest-locked') && !$el.hasClass('active')) {
                     this.selectLI($el);
                 }
 

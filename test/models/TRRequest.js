@@ -21,6 +21,123 @@ describe('TRRequest', function () {
             });
     });
 
+    // Required fields
+    
+    it('should actionKey field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.actionKey;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should userID field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.userID;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should callback field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.callback;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should reference field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.reference;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should model field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.model;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should modelCond field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.modelCond;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should toLanguageCode field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.toLanguageCode;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+    it('should objectData field is required', function (done) {
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+        trData.id = Math.random();
+        delete trData.objectData;
+
+        TRRequest.create(trData).exec(function (err, result) {
+            assert.isNotNull(err, ' --> should show required field error');
+            assert.isUndefined(result, ' --> should not return result');
+            done();
+        });
+    });
+
+
+    // Check status
+
     it('should show error when set invalid status', function (done) {
 
         TRRequest.update({ id: 1 }, {
@@ -66,20 +183,20 @@ describe('TRRequest', function () {
         });
 
     });
+    
+    // Callback
 
-    it('should callback to sender when translate data complates', function (done) {
+    it('should callback to sender when translate data completes', function (done) {
         var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
         var fixtureData = JSON.parse(data);
         var updatedData = fixtureData[0];
         updatedData.status = 'processed';
-        updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode] = "It's edited";
-        updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
+        updatedData.objectData.form.data.fields.action_description[updatedData.toLanguageCode] = "It's edited";
 
         ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
             assert.deepEqual(returnData.reference, updatedData.reference, ' --> should match reference data');
             assert.equal(returnData.language_code, updatedData.toLanguageCode, ' --> should match language code');
-            assert.equal(returnData.fields['caption'], updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode], ' --> should match caption value');
-            assert.equal(returnData.fields['description'], updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode], ' --> should match description value');
+            assert.equal(returnData.fields['action_description'], updatedData.objectData.form.data.fields.action_description[updatedData.toLanguageCode], ' --> should match description value');
             done();
         });
 
@@ -93,8 +210,7 @@ describe('TRRequest', function () {
         var fixtureData = JSON.parse(data);
         var updatedData = fixtureData[0];
         updatedData.status = 'pending';
-        updatedData.objectData.form.data.fields.caption[updatedData.toLanguageCode] = "It's edited";
-        updatedData.objectData.form.data.fields.description[updatedData.toLanguageCode] = "It's edited";
+        updatedData.objectData.form.data.fields.action_description[updatedData.toLanguageCode] = "It's edited";
 
         ADCore.queue.subscribe(updatedData.callback, function (callbackName, returnData) {
             done('Should not publish callback');

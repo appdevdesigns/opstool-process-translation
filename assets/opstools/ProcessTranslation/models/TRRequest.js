@@ -21,6 +21,9 @@ steal(
                     fieldLabel:'actionKey'      // which field is considered the Label
             */
         }, {
+                getLiveTrData: function (cb) {
+                    return AD.comm.service.get({ url: '/opstool-process-translation/trrequest/trlive/' + this.getID() }, cb);
+                },
                 lock: function () {
                     return AD.comm.socket.get({ url: '/opstool-process-translation/trrequest/lock/' + this.getID() });
                 },

@@ -7,19 +7,19 @@
 
 module.exports = {
 
-// connection:"appdev_default",
+connection:"appdev_default",
   
   tableName: "tr_request",
 
   attributes: {
 
-    actionKey : { type: 'string' },
+    actionKey : { type: 'string', required: true },
 
-    userID : { type: 'string' },
+    userID : { type: 'string', required: true },
 
-    callback : { type: 'string' },
+    callback : { type: 'string', required: true },
     
-    reference : { type: 'json' },
+    reference : { type: 'json', required: true },
 
     status : { type: 'string',
             in:[
@@ -29,22 +29,21 @@ module.exports = {
             defaultsTo: 'pending'
     },
     
-    model : { type: 'string' },
+    model : { type: 'string', required: true },
     
-    modelCond : { type: 'json' },
+    modelCond : { type: 'json', required: true },
     
     toLanguageCode : {
         type : "string",
+        required: true,
         size : 10,
         maxLength: 10
     },
 
-    objectData : { type: 'json' },
+    objectData : { type: 'json', required: true },
   },
   
-  
-  
-  afterUpdate: function(updatedRecord, cb) {
+   afterUpdate: function(updatedRecord, cb) {
 
     if (updatedRecord.status === 'processed') {
 
@@ -55,7 +54,12 @@ module.exports = {
 
       // afterUpdate does not provide the json fields as a object
       // so we have to convert them with JSON.parse() before using them:
-      returnData.reference = JSON.parse( updatedRecord.reference );
+      if (typeof(updatedRecord.reference) === 'string') {
+          returnData.reference = JSON.parse( updatedRecord.reference );
+      } else {
+          returnData.reference = updatedRecord.reference;          
+      }
+
       returnData.language_code = updatedRecord.toLanguageCode;
 
       // convert objectData:
@@ -93,10 +97,9 @@ module.exports = {
       returnData.fields = fields;
 
       ADCore.queue.publish(updatedRecord.callback, returnData);
-    }
+     }
 
     cb();
   }
-  
   
 };

@@ -29,6 +29,49 @@ module.exports = {
         rest: true
     },
 
+    // get opstool-process-translation/trrequest/trlive/:id   
+    trlive: function (req, res) {
+        var id = req.param('id');
+
+        TRRequest.findOne(id)
+            .then(function (request) {
+                // pull out the model, and modelCondition
+                // get model from sails
+                var Model = sails.models[request.model];
+                if (Model) {
+                    // filter fields
+                    var selectFields = Object.keys(request.objectData.form.data.fields);
+                    selectFields.push('language_code');
+                    
+                    Model.find(request.modelCond, { select: selectFields })
+                        .then(function (transList) {
+                            var returnData = {};
+
+                            // Convert to TRRequest format
+                            _.forEach(transList, function (tran) {
+                                _.forOwn(tran, function(value, key) {
+                                    if (key !== 'language_code') {
+                                        if (!returnData[key]) returnData[key] = {};
+
+                                        returnData[key][tran['language_code']] = value;
+                                    }
+                                });
+                            });
+
+                            res.AD.success(returnData);
+                        })
+                } else {
+
+                    var err = new Error('Model [' + request.model + '] not found.');
+                    res.AD.error(err);
+                }
+
+            })
+            .catch(function (err) {
+                res.AD.error(err)
+            })
+    },
+
     lock: function (req, res) {
         var id = req.param('id');
         if (id) {

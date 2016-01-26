@@ -1,11 +1,11 @@
 <!-- Widget -->
 
-<div class='col-xs-2 op-container' style='padding-left: 0px;'>
+<div class='col-xs-2 op-container'>
     <!--Left bar-->
     <div class="op-container op-widget sticky tr-pendingtransactions">
         <div class="op-widget-masthead">
-            <h3><strong>Pending Transactions</strong></h3>
-            <p>Choose one of the pending transactions to review</p>
+            <h3><strong app-label-key="trrequest.PendingTransactions.header">Pending Transactions</strong></h3>
+            <p app-label-key="trrequest.PendingTransactions.description">Choose one of the pending transactions to review</p>
         </div>
         <div class="op-widget-body">
             <ul class="op-list">
@@ -35,17 +35,12 @@
                     -->
             </ul>
         </div>
-        <div class="op-widget-footer">
-            <a class="op-toggle" href="#" title="appDev Designs">
-                <img src="/images/appdev_logo_white.png" style="width: 70px; height: auto;">
-            </a>
-        </div>
     </div>
     <!--/Left bar-->
 </div>
 
 <!-- Main stage area -->
-<div class='col-xs-10 op-container op-stage'>
+<div class='col-xs-10 op-container op-stage op-block'>
     <div class="op-margin-bottom tr-languageselector">
     </div>
 
@@ -53,7 +48,7 @@
         <div class="op-container">
             <div class="workspace col-lg-12 op-margin-bottom tr-translateworkspace">
                 <div class="mockup-display new-activity opsportal-content-area tr-instructionsPanel">
-                    <p> Select an entry on the left to begin editing. </p>
+                    <p app-label-key="trrequest.selectOne"> Select an entry on the left to begin editing. </p>
                 </div>
 
                 <!-- if(typeof transaction !== 'undefined' && transaction !== null) { -->
@@ -97,9 +92,9 @@
                     </div>
 
                     <div class="op-container nobgcolor op-margin-top tr-translateform-button">
-                        <button class="tr-translateform-submit btn btn-warning offset-15" type="submit" tr-status="cancel">Cancel</button>
-                        <button class="tr-translateform-submit btn btn-info offset-15" type="submit" tr-status="save"><i class="fa"></i>Save</button>
-                        <button class="tr-translateform-submit btn btn-success" type="submit" tr-status="accept"><i class="fa"></i>Accept</button>
+                        <button tr-status="cancel" app-label-key="trrequest.buttons.cancel" class="tr-translateform-submit btn btn-warning offset-15" type="submit">Cancel</button>
+                        <button tr-status="save" app-label-key="trrequest.buttons.save" class="tr-translateform-submit btn btn-info offset-15" type="submit"><i class="fa"></i>Save</button>
+                        <button tr-status="accept" app-label-key="trrequest.buttons.accept" class="tr-translateform-submit btn btn-success" type="submit"><i class="fa"></i>Accept</button>
                     </div>
                 </div>
                 <!-- } -->

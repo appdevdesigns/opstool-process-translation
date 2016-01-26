@@ -103,7 +103,7 @@ describe('TRRequestController', function () {
         var fixtureData = JSON.parse(data);
         var updatedData = fixtureData[0];
         updatedData.status = 'processed';
-        
+
         request
             .put('/opstool-process-translation/trrequest/' + id)
             .send(updatedData)
@@ -134,6 +134,25 @@ describe('TRRequestController', function () {
                 done(err);
             });
 
+    });
+
+    it('should return latest data on our REST TRlive route', function (done) {
+        var id = '1';
+        var data = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'TRRequest.json'));
+        var fixtureData = JSON.parse(data);
+        var trData = fixtureData[0];
+
+        request
+            .get('/opstool-process-translation/trrequest/trlive/' + id)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .end(function (err, res) {
+                for (var fieldName in trData.objectData.form.data.fields) {
+                    assert.isNotNull(res.body[fieldName]);
+                }
+
+                done(err);
+            });
     });
 
 });
