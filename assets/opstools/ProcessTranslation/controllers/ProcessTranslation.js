@@ -33,8 +33,10 @@ steal(
                 this._super(element, options);
 
                 this.TRRequest = AD.Model.get('opstools.ProcessTranslation.TRRequest');
+
                 this.data = {};
                 this.data.toLanguageCode = AD.lang.currentLanguage;
+
 
                 this.initDOM();
                 this.initControllers();

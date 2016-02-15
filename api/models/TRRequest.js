@@ -59,6 +59,7 @@ connection:"appdev_default",
       } else {
           returnData.reference = updatedRecord.reference;          
       }
+
       returnData.language_code = updatedRecord.toLanguageCode;
 
       // convert objectData:

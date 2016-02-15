@@ -1,0 +1,49 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8"
+"Content-Transfer-Encoding: 8bit"
+
+#. #########################################
+#. Labels for context: opstool-ProcessTranslation
+#. Source language: en
+#. Target language: th
+#. #########################################
+
+
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.PendingTransactions.header
+msgid "Pending Transactions"
+msgstr "[th]Pending Transactions"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.PendingTransactions.description
+msgid "Choose one of the pending transactions to review"
+msgstr "[th]Choose one of the pending transactions to review"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.selectOne
+msgid "Select an entry on the left to begin editing."
+msgstr "[th]Select an entry on the left to begin editing."
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.buttons.cancel
+msgid "Cancel"
+msgstr "[th]Cancel"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.buttons.save
+msgid "Save"
+msgstr "[th]Save"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.buttons.accept
+msgid "Accept"
+msgstr "[th]Accept"
+
