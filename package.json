@@ -22,7 +22,7 @@
     },
     "homepage": "https://github.com/wongpratan/opstool-process-translation#readme",
     "dependencies": {
-        "ad-utils": "appdevdesigns/ad-utils"
+        "ad-utils": "appdevdesigns/ad-utils#develop"
     },
     "devDependencies": {
         "barrels": "^1.6.4",
