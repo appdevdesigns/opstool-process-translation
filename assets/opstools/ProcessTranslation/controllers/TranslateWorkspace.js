@@ -1,17 +1,17 @@
 
 steal(
-    function () {
-		System.import('appdev').then(function () {
+    function() {
+		System.import('appdev').then(function() {
 			steal.import(
 				'appdev/ad',
 				'appdev/control/control',
 				'OpsPortal/classes/OpsButtonBusy',
-				'OpsPortal/classes/OpsWidget').then(function () {
+				'OpsPortal/classes/OpsWidget').then(function() {
 					// Namespacing conventions:
 					// AD.Control.extend('[application].[controller]', [{ static },] {instance} );
 					AD.Control.extend('opstools.ProcessTranslation.TranslateWorkspace', {
 
-						init: function (element, options) {
+						init: function(element, options) {
 							var self = this;
 							options = AD.defaults({
 								eventItemAccepted: 'TR_Transaction.Accepted'
@@ -32,7 +32,7 @@ steal(
 							this.initDOM();
 						},
 
-						initDOM: function () {
+						initDOM: function() {
 							this.dom = {};
 
 							var template = this.domToTemplate(this.element);
@@ -41,13 +41,16 @@ steal(
 							this.element.html(can.view('TR_TranslateForm', {}));
 						},
 
-						setTransaction: function (transaction, fromLanguageCode, toLanguageCode) {
+						setTransaction: function(transaction, fromLanguageCode, toLanguageCode) {
 							var _this = this;
 							this.transaction = transaction;
-                
+
 							// Get TRlive
-							this.transaction.getLiveTrData(function (err, data) {
+							this.transaction.getLiveTrData(function(err, data) {
 								for (var fieldName in data) {
+									if (fieldName === 'id')
+										continue;
+
 									var liveData = data[fieldName];
 
 									for (var languageCode in liveData) {
@@ -62,7 +65,7 @@ steal(
 							this.element.html(can.view('TR_TranslateForm', { transaction: transaction, data: transaction.objectData.form.data, languageData: this.data.languageData }));
 							this.element.find('.tr-instructionsPanel').hide();
 							this.element.find('.tr-translateform-panel').show();
-							this.element.find('.tr-translateform-submit').each(function (index, btn) {
+							this.element.find('.tr-translateform-submit').each(function(index, btn) {
 								var status = $(btn).attr('tr-status');
 								_this.buttons[status] = new AD.op.ButtonBusy(btn);
 							});
@@ -74,7 +77,7 @@ steal(
 								this.resize(this.data.screenHeight);
 						},
 
-						embeddTemplate: function (sel, templateInfo) {
+						embeddTemplate: function(sel, templateInfo) {
 							if (!templateInfo.view || !templateInfo.data.optionalInfo)
 								return;
 
@@ -85,7 +88,7 @@ steal(
 							//   path:  /path/to/view.ejs
 							// so make sure has beginning '/'
 							if (templateInfo.view[0] != '/') {
-								templateInfo.view = '/'+templateInfo.view;
+								templateInfo.view = '/' + templateInfo.view;
 							} else {
 
 								// and not '//':
@@ -97,10 +100,10 @@ steal(
 
 							try {
 								// $el.html(can.view(templateInfo.view, { data: templateInfo.data.optionalInfo }));
-								can.view(templateInfo.view, { data: templateInfo.data.optionalInfo }, function(frag){
+								can.view(templateInfo.view, { data: templateInfo.data.optionalInfo }, function(frag) {
 									$el.html(frag);
 								});
-								
+
 							} catch (e) {
 								// This is most likely a template reference error.
 								AD.error.log('Error displaying template:' + templateInfo.view, { error: e });
@@ -118,33 +121,33 @@ steal(
 							}
 						},
 
-						setFromLanguageCode: function (fromLanguageCode) {
+						setFromLanguageCode: function(fromLanguageCode) {
 							this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
 						},
 
-						clearWorkspace: function () {
+						clearWorkspace: function() {
 							this.transaction = null;
 							this.element.find('.tr-translateform').html('');
 							this.element.find('.tr-translateform-panel').hide();
 							this.element.find('.tr-instructionsPanel').show();
 						},
 
-						buttonsEnable: function () {
+						buttonsEnable: function() {
 							for (var b in this.buttons) {
 								if (this.buttons[b])
 									this.buttons[b].enable();
 							}
 						},
 
-						buttonsDisable: function () {
+						buttonsDisable: function() {
 							for (var b in this.buttons) {
 								if (this.buttons[b])
 									this.buttons[b].disable();
 							}
 						},
 
-						populateTransactionToNewValues: function () {
-                
+						populateTransactionToNewValues: function() {
+
 							// save form values to the object
 							var formValues = this.form.values();
 							for (var key in formValues) {
@@ -157,7 +160,7 @@ steal(
 							}
 						},
 
-						resize: function (height) {
+						resize: function(height) {
 							this.data.screenHeight = height;
 
 							if (this.dom.FormWidget) {
@@ -165,7 +168,7 @@ steal(
 							}
 						},
 
-						'.tr-translateform-submit click': function ($btn) {
+						'.tr-translateform-submit click': function($btn) {
 							var _this = this;
 
 							var status = $btn.attr('tr-status');
@@ -176,10 +179,10 @@ steal(
 							switch (status) {
 								case 'accept':
 									// TODO : confirm box ??
-                    
+
 									this.populateTransactionToNewValues();
 									this.transaction.attr('status', 'processed');
-									this.transaction.save().then(function () {
+									this.transaction.save().then(function() {
 										_this.clearWorkspace();
 
 										_this.element.trigger(_this.options.eventItemAccepted, _this.transaction);
@@ -190,19 +193,19 @@ steal(
 									break;
 								case 'save':
 									this.populateTransactionToNewValues();
-									this.transaction.save().then(function () {
+									this.transaction.save().then(function() {
 										_this.buttons[status].ready();
 										_this.buttonsEnable();
 									});
 									break;
 								case 'cancel':
 									AD.op.Dialog.Confirm({
-										fnYes: function () {
+										fnYes: function() {
 											_this.setTransaction(_this.transaction, _this.data.languageData.attr('fromLanguageCode'), _this.data.languageData.attr('toLanguageCode'));
 											_this.buttons[status].ready();
 											_this.buttonsEnable();
 										},
-										fnNo: function () {
+										fnNo: function() {
 											_this.buttons[status].ready();
 											_this.buttonsEnable();
 										}
