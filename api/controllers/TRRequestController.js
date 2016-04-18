@@ -58,13 +58,15 @@ module.exports = {
                                 });
                             });
 
-                            res.AD.success(returnData);
+                            return res.AD.success(returnData);
                         })
                 } else {
 
                     var err = new Error('Model [' + request.model + '] not found.');
                     res.AD.error(err);
                 }
+
+                return null;
 
             })
             .catch(function (err) {

@@ -53,6 +53,7 @@ module.exports = function (cb) {
                 .then(function (newEntry) {
                     // tell all connected sockets that their info is "stale"
                     sails.sockets.broadcast('sails_model_create_trrequest', 'trrequest', { verb: 'stale' });
+                    return null;
                 })
                 .catch(function (err) {
                     ADCore.error.log('unable to create this TRRequest entry', {
