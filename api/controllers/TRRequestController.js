@@ -6,16 +6,16 @@
  */
 var lockedItems = [];
 
-ADCore.queue.subscribe('opsportal.socket.disconnect', function (message, socket) {
+ADCore.queue.subscribe('opsportal.socket.disconnect', function(message, socket) {
     var socketId = socket.id;
 
-    _.forEach(lockedItems, function (lockedItem) {
+    _.forEach(lockedItems, function(lockedItem) {
         if (lockedItem.socketId === socketId) {
             TRRequest.message(lockedItem.id, { locked: false }, {});
         }
     });
 
-    _.remove(lockedItems, function (lockedItem) {
+    _.remove(lockedItems, function(lockedItem) {
         return lockedItem.socketId === socketId;
     });
 });
@@ -30,11 +30,11 @@ module.exports = {
     },
 
     // get opstool-process-translation/trrequest/trlive/:id   
-    trlive: function (req, res) {
+    trlive: function(req, res) {
         var id = req.param('id');
 
         TRRequest.findOne(id)
-            .then(function (request) {
+            .then(function(request) {
                 // pull out the model, and modelCondition
                 // get model from sails
                 var Model = sails.models[request.model];
@@ -42,20 +42,31 @@ module.exports = {
                     // filter fields
                     var selectFields = Object.keys(request.objectData.form.data.fields);
                     selectFields.push('language_code');
-                    
+					selectFields.push('updatedAt');
+
                     Model.find(request.modelCond, { select: selectFields })
-                        .then(function (transList) {
+                        .then(function(transList) {
                             var returnData = {};
 
                             // Convert to TRRequest format
-                            _.forEach(transList, function (tran) {
-                                _.forOwn(tran, function(value, key) {
-                                    if (key !== 'language_code') {
-                                        if (!returnData[key]) returnData[key] = {};
+                            _.forEach(transList, function(tran) {
+								_.forOwn(tran, function(value, key) {
+									if (key !== 'language_code') {
+										if (!returnData[key]) returnData[key] = {};
 
-                                        returnData[key][tran['language_code']] = value;
-                                    }
-                                });
+										if (key === 'updatedAt')
+											return;
+
+										// Populate saved translate value
+										if (request.updatedAt > tran.updatedAt && key !== 'id') {
+											var savedValue = request.objectData.form.data.fields[key];
+											returnData[key][tran['language_code']] = savedValue[tran['language_code']] ? savedValue[tran['language_code']] : value;
+										}
+										else {
+											returnData[key][tran['language_code']] = value;
+										}
+									}
+								});
                             });
 
                             return res.AD.success(returnData);
@@ -69,12 +80,12 @@ module.exports = {
                 return null;
 
             })
-            .catch(function (err) {
+            .catch(function(err) {
                 res.AD.error(err)
             })
     },
 
-    lock: function (req, res) {
+    lock: function(req, res) {
         var id = req.param('id');
         if (id) {
             var socketId = req.socket.id;
@@ -93,10 +104,10 @@ module.exports = {
         }
     },
 
-    unlock: function (req, res) {
+    unlock: function(req, res) {
         var id = req.param('id');
         if (id) {
-            _.remove(lockedItems, function (lockedItem) {
+            _.remove(lockedItems, function(lockedItem) {
                 return lockedItem.id === id;
             });
 
@@ -107,8 +118,8 @@ module.exports = {
         }
     },
 
-    wholock: function (req, res) {
-        res.AD.success(_.map(lockedItems, function (item) { return parseInt(item.id); }));
+    wholock: function(req, res) {
+        res.AD.success(_.map(lockedItems, function(item) { return parseInt(item.id); }));
     }
 
 };

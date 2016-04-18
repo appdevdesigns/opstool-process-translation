@@ -43,6 +43,19 @@ module.exports = {
     objectData : { type: 'json', required: true },
   },
   
+	beforeUpdate: function(updatedRecord, cb) {
+		if (!updatedRecord.objectData.form.data.labels) {
+			this.findOne({ id: updatedRecord.id }).then(function(oldRecord) {
+				updatedRecord.objectData.form.data.labels = oldRecord.objectData.form.data.labels;
+
+				cb();
+			});
+		}
+		else {
+			cb();
+		}
+	},
+
    afterUpdate: function(updatedRecord, cb) {
 
     if (updatedRecord.status === 'processed') {
