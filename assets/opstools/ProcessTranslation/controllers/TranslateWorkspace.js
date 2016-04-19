@@ -59,6 +59,18 @@ steal(
 								}
 							});
 
+							// Popuplate empty labels
+							if (!transaction.objectData.form.labels)
+								transaction.objectData.form.data.labels = {};
+
+							for (var fieldName in transaction.objectData.form.data.fields) {
+								if (!transaction.objectData.form.data.labels[fieldName]) {
+									transaction.objectData.form.data.labels[fieldName] = {};
+									transaction.objectData.form.data.labels[fieldName][fromLanguageCode] = '';
+									transaction.objectData.form.data.labels[fieldName][toLanguageCode] = '';
+								}
+							}
+
 							this.data.languageData.attr('fromLanguageCode', fromLanguageCode);
 							this.data.languageData.attr('toLanguageCode', toLanguageCode);
 
