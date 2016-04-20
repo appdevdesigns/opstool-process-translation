@@ -11,7 +11,8 @@ steal(
 			steal.import(
 				'appdev/ad',
 				'appdev/control/control',
-				'OpsPortal/classes/OpsTool').then(function () {
+				'OpsPortal/classes/OpsTool',
+				'site/labels/opstool-ProcessTranslation').then(function () {
 				
 				// Namespacing conventions:
 				// AD.Control.OpsTool.extend('[ToolName]', [{ static },] {instance} );

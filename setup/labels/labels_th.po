@@ -47,3 +47,15 @@ msgstr "[th]Save"
 msgid "Accept"
 msgstr "[th]Accept"
 
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.languageSelector.from
+msgid "Source language"
+msgstr "[th]From"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.languageSelector.to
+msgid "Target language"
+msgstr "[th]To"
+
