@@ -60,7 +60,7 @@ steal(
 							});
 
 							// Popuplate empty labels
-							if (!transaction.objectData.form.labels)
+							if (!transaction.objectData.form.data.labels)
 								transaction.objectData.form.data.labels = {};
 
 							for (var fieldName in transaction.objectData.form.data.fields) {
