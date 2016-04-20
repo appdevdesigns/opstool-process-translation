@@ -15,35 +15,35 @@ msgstr ""
 #. code: th
 #. key: trrequest.PendingTransactions.header
 msgid "Pending Transactions"
-msgstr "[th]Pending Transactions"
+msgstr "รายการที่รอดำเนินการ"
 
 #. path: opstool-ProcessTranslation
 #. code: th
 #. key: trrequest.PendingTransactions.description
 msgid "Choose one of the pending transactions to review"
-msgstr "[th]Choose one of the pending transactions to review"
+msgstr "เลือกดูรายการที่รอดำเนินการ"
 
 #. path: opstool-ProcessTranslation
 #. code: th
 #. key: trrequest.selectOne
 msgid "Select an entry on the left to begin editing."
-msgstr "[th]Select an entry on the left to begin editing."
+msgstr "เลือกงานที่บันทึกไว้ซึ่งอยู่ด้านขวาเพื่อเริ่มแก้ไข"
 
 #. path: opstool-ProcessTranslation
 #. code: th
 #. key: trrequest.buttons.cancel
 msgid "Cancel"
-msgstr "[th]Cancel"
+msgstr "ยกเลิก"
 
 #. path: opstool-ProcessTranslation
 #. code: th
 #. key: trrequest.buttons.save
 msgid "Save"
-msgstr "[th]Save"
+msgstr "บันทึก"
 
 #. path: opstool-ProcessTranslation
 #. code: th
 #. key: trrequest.buttons.accept
 msgid "Accept"
-msgstr "[th]Accept"
+msgstr "ยอมรับ"
 
