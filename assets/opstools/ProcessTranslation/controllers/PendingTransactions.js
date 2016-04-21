@@ -113,7 +113,12 @@ steal(
 								if (err) return;
 
 								result.forEach(function (lockedId) {
-									if (_this.data.selectedItem.getID() !== lockedId) {
+									if (_this.data.selectedItem) {
+										if (_this.data.selectedItem.getID() !== lockedId) {
+											var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
+											foundEL.addClass('trrequest-locked');
+										}
+									} else {
 										var foundEL = _this.element.find('[trrequest-id="' + lockedId + '"]');
 										foundEL.addClass('trrequest-locked');
 									}
