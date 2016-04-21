@@ -6,94 +6,97 @@ steal(
 			steal.import(
 				'appdev/ad',
 				'appdev/control/control'
-				).then(function () {
-				
-					// Namespacing conventions:
-					AD.Control.extend('opstools.ProcessTranslation.LanguageSelector', {
+			).then(function () {
 
-						init: function (element, options) {
-							var self = this;
-							options = AD.defaults({
-								toLanguageCode: 'en',
-								eventLanguageSelected: 'LANGUAGE_SELECTED',
-								templateDOM: '/opstools/ProcessTranslation/views/LanguageSelector/LanguageSelector.ejs'
-							}, options);
-							this.options = options;
+				// Namespacing conventions:
+				AD.Control.extend('opstools.ProcessTranslation.LanguageSelector', {
 
-							// Call parent init
-							this._super(element, options);
+					init: function (element, options) {
+						var self = this;
+						options = AD.defaults({
+							toLanguageCode: 'en',
+							eventLanguageSelected: 'TR_Language.Selected',
+							eventLanguageSelectorInitialized: 'TR_Language_Selector.Initialized',
+							templateDOM: '/opstools/ProcessTranslation/views/LanguageSelector/LanguageSelector.ejs'
+						}, options);
+						this.options = options;
 
-							// Get available languages
-							AD.lang.list().then(function (languages) {
-								self.data.availableLanguages = languages;
+						// Call parent init
+						this._super(element, options);
 
-								self.data.fromLanguagesList = new can.Map(self.data.availableLanguages);
-								self.data.toLanguagesList = new can.Map(self.data.availableLanguages);
-								self.data.toLanguageCode = self.options.toLanguageCode;
+						// Get available languages
+						AD.lang.list().then(function (languages) {
+							self.data.availableLanguages = languages;
 
-								// Set default from language when it's not specified
-								for (var code in self.data.availableLanguages) {
-									if (code !== self.data.toLanguageCode) {
-										self.selectLanguage('fromLanguage', code);
-										break;
-									}
-								}
+							self.data.fromLanguagesList = new can.Map(self.data.availableLanguages);
+							self.data.toLanguagesList = new can.Map(self.data.availableLanguages);
+							self.data.toLanguageCode = self.options.toLanguageCode;
 
-								self.refreshLanguagesList();
-
-								self.initDOM();
-							});
-
-							this.data = {};
-							this.dataSource = this.options.dataSource; // AD.models.Projects;
-						},
-
-						initDOM: function () {
-							var _this = this;
-							_this.element.html(can.view(_this.options.templateDOM, { fromLanguagesList: _this.data.fromLanguagesList, toLanguagesList: _this.data.toLanguagesList }));
-
-							_this.element.find('#translateFromLanguage').val(_this.data.fromLanguageCode);
-							_this.element.find('#translateToLanguage').val(_this.data.toLanguageCode);
-						},
-
-						selectLanguage: function (trans, val) {
-							if (trans === 'fromLanguage') {
-								this.data.fromLanguageCode = val;
-							} else {
-								this.data.toLanguageCode = val;
-							}
-
-							this.refreshLanguagesList();
-
-							this.element.trigger(this.options.eventLanguageSelected, { language_code: val, trans: trans });
-						},
-
-						refreshLanguagesList: function () {
-							if (Object.keys(this.data.availableLanguages).length < 3)
-								return;
-
-							for (var code in this.data.availableLanguages) {
-								if (!this.data.fromLanguagesList[code] && code !== this.data.toLanguageCode) {
-									this.data.fromLanguagesList.attr(code, this.data.availableLanguages[code]);
-								}
-
-								if (!this.data.toLanguagesList[code] && code !== this.data.fromLanguageCode) {
-									this.data.toLanguagesList.attr(code, this.data.availableLanguages[code]);
+							// Set default from language when it's not specified
+							for (var code in self.data.availableLanguages) {
+								if (code !== self.data.toLanguageCode) {
+									self.selectLanguage('fromLanguage', code);
+									break;
 								}
 							}
 
-							this.data.fromLanguagesList.removeAttr(this.data.toLanguageCode);
-							this.data.toLanguagesList.removeAttr(this.data.fromLanguageCode);
-						},
+							self.refreshLanguagesList();
 
-						'select.language-selector change': function ($el, ev) {
-							var trans = $el.attr('trrequest-trans');
-							var val = $el.find('option:selected').val();
+							self.initDOM();
 
-							this.selectLanguage(trans, val);
+							self.element.trigger(self.options.eventLanguageSelectorInitialized, {});
+						});
+
+						this.data = {};
+						this.dataSource = this.options.dataSource; // AD.models.Projects;
+					},
+
+					initDOM: function () {
+						var _this = this;
+						_this.element.html(can.view(_this.options.templateDOM, { fromLanguagesList: _this.data.fromLanguagesList, toLanguagesList: _this.data.toLanguagesList }));
+
+						_this.element.find('#translateFromLanguage').val(_this.data.fromLanguageCode);
+						_this.element.find('#translateToLanguage').val(_this.data.toLanguageCode);
+					},
+
+					selectLanguage: function (trans, val) {
+						if (trans === 'fromLanguage') {
+							this.data.fromLanguageCode = val;
+						} else {
+							this.data.toLanguageCode = val;
 						}
 
-					});
+						this.refreshLanguagesList();
+
+						this.element.trigger(this.options.eventLanguageSelected, { language_code: val, trans: trans });
+					},
+
+					refreshLanguagesList: function () {
+						if (Object.keys(this.data.availableLanguages).length < 3)
+							return;
+
+						for (var code in this.data.availableLanguages) {
+							if (!this.data.fromLanguagesList[code] && code !== this.data.toLanguageCode) {
+								this.data.fromLanguagesList.attr(code, this.data.availableLanguages[code]);
+							}
+
+							if (!this.data.toLanguagesList[code] && code !== this.data.fromLanguageCode) {
+								this.data.toLanguagesList.attr(code, this.data.availableLanguages[code]);
+							}
+						}
+
+						this.data.fromLanguagesList.removeAttr(this.data.toLanguageCode);
+						this.data.toLanguagesList.removeAttr(this.data.fromLanguageCode);
+					},
+
+					'select.language-selector change': function ($el, ev) {
+						var trans = $el.attr('trrequest-trans');
+						var val = $el.find('option:selected').val();
+
+						this.selectLanguage(trans, val);
+					}
+
 				});
+			});
 		});
 	});
