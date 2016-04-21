@@ -27,7 +27,7 @@ msgstr "เลือกดูรายการที่รอดำเนิน
 #. code: th
 #. key: trrequest.selectOne
 msgid "Select an entry on the left to begin editing."
-msgstr "เลือกงานที่บันทึกไว้ซึ่งอยู่ด้านขวาเพื่อเริ่มแก้ไข"
+msgstr "เลือกงานที่บันทึกไว้ซึ่งอยู่ด้านซ้ายเพื่อเริ่มแก้ไข"
 
 #. path: opstool-ProcessTranslation
 #. code: th
@@ -46,4 +46,16 @@ msgstr "บันทึก"
 #. key: trrequest.buttons.accept
 msgid "Accept"
 msgstr "ยอมรับ"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.languageSelector.from
+msgid "Source language"
+msgstr "ต้นฉบับ"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.languageSelector.to
+msgid "Target language"
+msgstr "ไปยัง"
 

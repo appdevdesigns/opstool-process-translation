@@ -14,7 +14,8 @@ steal(
 						init: function(element, options) {
 							var self = this;
 							options = AD.defaults({
-								eventItemAccepted: 'TR_Transaction.Accepted'
+								eventItemAccepted: 'TR_Transaction.Accepted',
+								eventPopulateFinished: 'TR_Transaction.Finished'
 							}, options);
 							this.options = options;
 
@@ -87,6 +88,8 @@ steal(
 							this.dom.FormWidget = new AD.op.Widget(this.element.find('.tr-translate-body'));
 							if (this.data.screenHeight)
 								this.resize(this.data.screenHeight);
+								
+							this.element.trigger(this.options.eventPopulateFinished);
 						},
 
 						embeddTemplate: function(sel, templateInfo) {

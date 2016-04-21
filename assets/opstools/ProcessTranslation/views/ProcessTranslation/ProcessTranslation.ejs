@@ -32,9 +32,9 @@
                     <i class="fa [[= menuData.icon ]]"></i>
                     <div><strong>[[= menuData.action.key ]]</strong>
                         <br>
-                        <span>From: [[= menuData.fromLanguage ]]</span>
+                        <span><span app-label-key="trrequest.languageSelector.from">From</span>: [[= menuData.fromLanguage ]]</span>
                         <br>
-                        <span>To: [[= menuData.toLanguage ]]</span>
+                        <span><span app-label-key="trrequest.languageSelector.to">To</span>: [[= menuData.toLanguage ]]</span>
                     </div>
                 </li>
                 <!--
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="op-container nobgcolor op-margin-top tr-translateform-button">
-                        <button tr-status="cancel" app-label-key="trrequest.buttons.cancel" class="tr-translateform-submit btn btn-warning offset-15" type="submit">Cancel</button>
+                        <button tr-status="cancel"  class="tr-translateform-submit btn btn-warning offset-15" type="submit"><span app-label-key="trrequest.buttons.cancel">Cancel</span></button>
                         <button tr-status="save" app-label-key="trrequest.buttons.save" class="tr-translateform-submit btn btn-info offset-15" type="submit"><i class="fa"></i>Save</button>
                         <button tr-status="accept" app-label-key="trrequest.buttons.accept" class="tr-translateform-submit btn btn-success" type="submit"><i class="fa"></i>Accept</button>
                     </div>
