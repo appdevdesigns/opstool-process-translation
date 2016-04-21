@@ -30,7 +30,7 @@
                           -->
                 <li mockup-show="new-activity" class="op-container selected [[= active ]]" trrequest-id="[[= item.getID() ]]" obj-embed="item">
                     <i class="fa [[= menuData.icon ]]"></i>
-                    <div><strong>[[= menuData.action.key ]]</strong>
+                    <div><strong app-label-key="[[= menuData.action.key ]]">[[= menuData.action.key ]]</strong>
                         <br>
                         <span><span app-label-key="trrequest.languageSelector.from">From</span>: [[= menuData.fromLanguage ]]</span>
                         <br>
@@ -61,7 +61,7 @@
                 <!-- if(typeof transaction !== 'undefined' && transaction !== null) { -->
                 <div class="op-widget-masthead tr-translateform-panel">
                     <h3><i class="fa fa-4x [[= transaction.objectData.menu.icon ]]"></i>
-	                  <strong style="vertical-align: top;">[[= transaction.objectData.menu.action.key ]]</strong>
+	                  <strong app-label-key="[[= transaction.objectData.menu.action.key ]]" style="vertical-align: top;">[[= transaction.objectData.menu.action.key ]]</strong>
 	                </h3>
                     <div class="op-container op-margin-top">
                         <div class="op-widget tr-translate-body">

@@ -129,6 +129,8 @@ steal(
 									_this.controllers.PendingTransactions.setList(list);
 
 									_this.data.list = list;
+									
+									_this.translate();
 								});
 						},
 
