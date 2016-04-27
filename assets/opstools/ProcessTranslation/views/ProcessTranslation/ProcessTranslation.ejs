@@ -32,9 +32,11 @@
                     <i class="fa [[= menuData.icon ]]"></i>
                     <div><strong app-label-key="[[= menuData.action.key ]]">[[= menuData.action.key ]]</strong>
                         <br>
-                        <span><span app-label-key="trrequest.languageSelector.from">From</span>: [[= menuData.fromLanguage ]]</span>
+                        "[[= menuData.itemName ]]"
                         <br>
-                        <span><span app-label-key="trrequest.languageSelector.to">To</span>: [[= menuData.toLanguage ]]</span>
+                        <span app-label-key="trrequest.createBy">By</span>: "[[= menuData.createdBy ]]"
+                        <br>
+                        <span app-label-key="trrequest.createDate">When</span>: [[= menuData.date ]]
                     </div>
                 </li>
                 <!--

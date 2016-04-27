@@ -59,3 +59,15 @@ msgstr "ต้นฉบับ"
 msgid "Target language"
 msgstr "ไปยัง"
 
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.createBy
+msgid "Create by"
+msgstr "โดย"
+
+#. path: opstool-ProcessTranslation
+#. code: th
+#. key: trrequest.createDate
+msgid "Create date"
+msgstr "เมื่อ"
+
