@@ -1,9 +1,7 @@
 steal(
-// List your Page's dependencies here:
-	'opstools/ProcessTranslation/ProcessTranslation.css',	
+	// List your Page's dependencies here:
+	'opstools/ProcessTranslation/ProcessTranslation.css',
+	'opstools/ProcessTranslation/controllers/ProcessTranslation.js',
 	function () {
-		steal.import('opstools/ProcessTranslation/controllers/ProcessTranslation').then(function () {
-
-		});
 	}
-	);
+);
