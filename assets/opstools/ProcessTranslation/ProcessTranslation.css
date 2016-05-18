@@ -22,6 +22,16 @@ li.trrequest-locked {
     font-size: 35px;
 }
 
+.tr-pendingtransactions .op-widget-body,
+.pa-pendingtransactions .op-widget-body {
+    margin-left: 15px;
+}
+
+.opsportal-area-tool-ProcessTranslation .op-stage {
+    margin-top: 10px !important;
+    padding-top: 10px !important;	
+}
+
 li.active {
     font-weight: normal !important;
 }
@@ -49,9 +59,22 @@ textarea.tr-field-data {
    resize: none;
 }
 
+.tr-translate-body .col-xs-6 {
+	margin-top: 10px;
+}
+
+.tr-optionalinfo {
+	padding: 15px 15px 0 15px;
+}
+
+.tr-translate-body {
+	background: transparent !important;
+}
+
 /* Button */
 .tr-translateform-button {
     width: 100%;
     text-align: right;   
 }
+
 
