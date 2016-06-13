@@ -117,6 +117,11 @@ steal(
 								// $el.html(can.view(templateInfo.view, { data: templateInfo.data.optionalInfo }));
 								can.view(templateInfo.view, { data: templateInfo.data.optionalInfo }, function(frag) {
 									$el.html(frag);
+
+									// attach any embed op images
+									$el.find('[ap-op-image]').each(function(i, el){
+										new AD.op.Image(el);
+									});
 								});
 
 							} catch (e) {
