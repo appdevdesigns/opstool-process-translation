@@ -4,6 +4,8 @@
  * @description :: Server-side logic for managing Trrequests
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var _ = require('lodash');
+
 var lockedItems = [];
 
 ADCore.queue.subscribe('opsportal.socket.disconnect', function(message, socket) {
