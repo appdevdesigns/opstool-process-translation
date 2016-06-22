@@ -7,10 +7,6 @@ li.trrequest-locked {
     background-color: #fff;
 }
 
-.op-stage {
-    overflow-y: auto !important;
-}   
-
 .nobgcolor {
     background-color:transparent !important;
 }

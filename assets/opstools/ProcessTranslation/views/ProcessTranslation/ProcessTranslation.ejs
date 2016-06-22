@@ -1,3 +1,4 @@
+
 <!-- 
 #  Appdev Label Info:
 #label_context:opstool-ProcessTranslation
@@ -6,7 +7,6 @@
 
 
 <!-- Widget -->
-
 <div class='col-xs-2 op-container'>
     <!--Left bar-->
     <div class="op-container op-widget sticky tr-pendingtransactions">
@@ -30,7 +30,7 @@
                           -->
                 <li mockup-show="new-activity" class="op-container selected [[= active ]]" trrequest-id="[[= item.getID() ]]" obj-embed="item">
                     <i class="fa [[= menuData.icon ]]"></i>
-                    <div><strong app-label-key="[[= menuData.action.key ]]" app-label-context="[[= menuData.action.context ]]">[[= menuData.action.key ]]</strong>
+                    <div style="display: inline-block; vertical-align: top;"><strong app-label-key="[[= menuData.action.key ]]" app-label-context="[[= menuData.action.context ]]">[[= menuData.action.key ]]</strong>
                         <br>
                         "[[= menuData.itemName ]]"
                         <br>
@@ -108,6 +108,6 @@
                 </div>
                 <!-- } -->
             </div>
-        </div>
+		</div>
     </div>
 </div>
