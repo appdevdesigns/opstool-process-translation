@@ -1,4 +1,3 @@
-
 <!-- 
 #  Appdev Label Info:
 #label_context:opstool-ProcessTranslation
@@ -7,6 +6,7 @@
 
 
 <!-- Widget -->
+
 <div class='col-xs-2 op-container'>
     <!--Left bar-->
     <div class="op-container op-widget sticky tr-pendingtransactions">
@@ -14,7 +14,7 @@
             <h3><strong app-label-key="trrequest.PendingTransactions.header">Pending Transactions</strong></h3>
             <p app-label-key="trrequest.PendingTransactions.description">Choose one of the pending transactions to review</p>
         </div>
-        <div class="op-widget-body">
+        <div class="op-widget-body" style="overflow-y: auto;">
             <ul class="op-list">
                 <!-- 
                           data.attr('listTransactions').each(function(item) { 
@@ -30,7 +30,7 @@
                           -->
                 <li mockup-show="new-activity" class="op-container selected [[= active ]]" trrequest-id="[[= item.getID() ]]" obj-embed="item">
                     <i class="fa [[= menuData.icon ]]"></i>
-                    <div style="display: inline-block; vertical-align: top;"><strong app-label-key="[[= menuData.action.key ]]" app-label-context="[[= menuData.action.context ]]">[[= menuData.action.key ]]</strong>
+                    <div style="display: inline-block; vertical-align: top;"><strong app-label-key="[[= menuData.action.key ]]">[[= menuData.action.key ]]</strong>
                         <br>
                         "[[= menuData.itemName ]]"
                         <br>
