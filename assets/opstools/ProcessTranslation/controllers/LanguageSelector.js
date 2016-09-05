@@ -24,6 +24,8 @@ steal(
 						// Call parent init
 						this._super(element, options);
 
+						this.data = {};
+						
 						// Get available languages
 						AD.lang.list().then(function (languages) {
 							self.data.availableLanguages = languages;
@@ -47,7 +49,7 @@ steal(
 							self.element.trigger(self.options.eventLanguageSelectorInitialized, {});
 						});
 
-						this.data = {};
+						
 						this.dataSource = this.options.dataSource; // AD.models.Projects;
 					},
 

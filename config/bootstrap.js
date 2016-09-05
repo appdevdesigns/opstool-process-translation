@@ -13,7 +13,11 @@ var _ = require('lodash');
 
 module.exports = function (cb) {
 
-    AD.module.permissions(path.join(__dirname, '..', 'setup', 'permissions'), cb);
+    // handle our common bootstrap setup instructions:
+        // - verify permissions are created
+        // - verify opsportal tool definitions are defined.
+    AD.module.bootstrap(__dirname, cb);
+
 
     ////
     //// Setup the Queue listeners here
