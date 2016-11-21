@@ -7,7 +7,7 @@ module.exports = [
 
     { 
         key:'process.translation', 
-        permissions:'process.translation.tool.view', 
+        permissions:'translation.tool.view', 
         icon:'fa-check-square', 
         controller:'ProcessTranslation',
         label:'Process Translation',
