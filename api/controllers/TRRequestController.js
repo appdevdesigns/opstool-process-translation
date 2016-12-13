@@ -36,9 +36,12 @@ module.exports = {
     trlive: function(req, res) {
         var id = req.param('id');
 
-AD.log('<green>.... Translation - trrequest/trlive id:' + id + ' </green>');
-
         TRRequest.findOne(id)
+            .fail(function(err) {
+AD.log('<red>.... Translation - trrequest/trlive id:' + id + '</red>');
+
+                res.AD.error(err);
+            })
             .then(function(request) {
                 // pull out the model, and modelCondition
                 // get model from sails
@@ -50,6 +53,11 @@ AD.log('<green>.... Translation - trrequest/trlive id:' + id + ' </green>');
 					selectFields.push('updatedAt');
 
                     Model.find(request.modelCond, { select: selectFields })
+                        .fail(function(err) {
+AD.log('<red>.... Translation - trrequest/trlive modelCond:', modelCond, ' select:', selectFields, '</red>');
+
+                            res.AD.error(err);
+                        })
                         .then(function(transList) {
                             var returnData = {};
 
