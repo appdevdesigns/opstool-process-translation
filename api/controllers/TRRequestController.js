@@ -35,6 +35,8 @@ module.exports = {
     trlive: function(req, res) {
         var id = req.param('id');
 
+AD.log('<green>.... Translation - trrequest/trlive id:' + id + ' </green>');
+
         TRRequest.findOne(id)
             .then(function(request) {
                 // pull out the model, and modelCondition
